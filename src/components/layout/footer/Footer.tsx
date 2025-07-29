@@ -16,8 +16,7 @@ export default function Footer() {
             <img
               src="/images/Logo-main.png" // 🖼️ <-- Replace with your actual logo path
               alt="Code & Cultivate Logo"
-className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain"
-            />
+              className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain"/>
           </Link>
           <p className="text-sm mt-2">Real Tools. Real Growth.</p>
         </div>

@@ -27,13 +27,13 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center space-x-6">
-            {MainLinks.map(link => (
-          <Link
-            key={link.name}
-            to={link.href}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition" >
-            {link.name}
-          </Link>
+            {MainLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition" >
+                {link.name}
+              </Link>
             ))}
             <DarkModeToggle />
           </div>
