@@ -12,12 +12,17 @@ export default function Footer() {
         {/* Column 1: Branding */}
         <div>
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src="/images/Logo-main.png" // 🖼️ <-- Replace with your actual logo path
-              alt="Code & Cultivate Logo"
-              className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 w-auto object-contain"/>
+          <Link to="/" className="flex items-center">
+            <div className="flex items-center rounded-md overflow-hidden font-bold text-xs sm:text-sm md:text-base shadow transition-colors duration-300">
+              <span className="px-1 sm:pl-2 py-0.5 bg-[#184E59] dark:bg-green-500 text-white transition-colors duration-300">
+                CodeAnd
+              </span>
+              <span className="pr-2 sm:px-2 py-0.5 bg-green-500 dark:bg-[#184E59] text-white transition-colors duration-300">
+                Cultivate
+              </span>
+            </div>
           </Link>
+
           <p className="text-sm mt-2">Real Tools. Real Growth.</p>
         </div>
 

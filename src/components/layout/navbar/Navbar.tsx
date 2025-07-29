@@ -1,27 +1,42 @@
-// src/components/layout/Navbar/Navbar.tsx
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { MainLinks } from "../site.config";
 import DarkModeToggle from "./DarkModeToggle";
 import MobileNavLinks from "./MobileNavLinks";
+import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(prev => !prev);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [menuOpen]);
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white text-black shadow dark:bg-gray-900 dark:text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> {/* This div already applies the fixed width */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src="/images/mainLogo.png" // 🖼️ <-- Replace with your actual logo path
-              alt="Code & Cultivate Logo"
-              className="h-32 w-auto object-contain"
-            />
+          <Link to="/" className="flex items-center">
+            <div className="flex items-center rounded-lg overflow-hidden font-bold text-sm sm:text-base md:text-lg lg:text-xl shadow transition-colors duration-300">
+              <span className="px-1 sm:pl-1 py-1 bg-[#184E59] dark:bg-green-500 text-white transition-colors duration-300">
+                CodeAnd
+              </span>
+              <span className="pr-2 sm:px-1 py-1 bg-green-500 dark:bg-[#184E59] text-white transition-colors duration-300">
+                Cultivate
+              </span>
+            </div>
           </Link>
 
           {/* Desktop links */}
@@ -30,7 +45,8 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition" >
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+              >
                 {link.name}
               </Link>
             ))}
@@ -39,14 +55,25 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <div className="md:hidden">
-            <button onClick={toggleMenu}>
-              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button onClick={() => setMenuOpen(true)}>
+              <Menu className="w-6 h-6" />
             </button>
           </div>
         </div>
       </div>
 
-      {menuOpen && <MobileNavLinks />}
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <div className="fixed inset-0 z-50 flex">
+            <div
+              className="absolute inset-0 bg-black/50 "
+              onClick={() => setMenuOpen(false)}
+            />
+            <MobileNavLinks setMenuOpen={setMenuOpen} />
+          </div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
