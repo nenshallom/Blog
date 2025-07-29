@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-// import { navLinks } from "./navConfig";
 import { MainLinks } from "../site.config";
 import DarkModeToggle from "./DarkModeToggle";
 import MobileNavLinks from "./MobileNavLinks";
