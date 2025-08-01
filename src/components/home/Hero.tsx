@@ -25,7 +25,7 @@ export default function Hero() {
         alt="AI vector"
         className={`
           w-[60%] sm:w-[50%] md:w-[40%] h-auto mx-auto mb-8
-          lg:absolute lg:bottom-10 lg:right-0 lg:w-[21vw] lg:mb-10
+          lg:absolute lg:bottom-10 lg:w-[17vw] lg:mb-20 lg:right-9
           max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg 
           object-contain pointer-events-none opacity-80 z-0
         `}
@@ -63,6 +63,7 @@ export default function Hero() {
       >
         <Link
           to="/blog"
+          aria-label="Explore the blog"
           className="px-6 py-3 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600 transition"
         >
           Explore Blog
@@ -70,6 +71,7 @@ export default function Hero() {
 
         <Link
           to="/newsletter"
+          aria-label="Subscribe to the newsletter"
           className="px-6 py-3 rounded-full border border-green-500 text-green-600 font-semibold hover:bg-green-100 dark:hover:bg-gray-800 transition"
         >
           Join Newsletter
