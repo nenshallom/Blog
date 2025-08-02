@@ -25,9 +25,9 @@ export default function Hero() {
         alt="AI vector"
         className={`
           w-[60%] sm:w-[50%] md:w-[40%] h-auto mx-auto mb-8
-          lg:absolute lg:bottom-10 lg:w-[17vw] lg:mb-20 lg:right-9
+          lg:absolute lg:bottom-10 lg:w-[17vw] lg:mb-20 lg:right-24
           max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg 
-          object-contain pointer-events-none opacity-80 z-0
+          object-contain pointer-events-none opacity-80 z-10
         `}
       />
 
@@ -36,7 +36,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight uppercase z-10"
+        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight uppercase z-0"
       >
         <span className="text-green-500">Real Tools</span> and Tech
         <br />
