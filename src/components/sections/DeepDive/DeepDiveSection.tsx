@@ -1,63 +1,70 @@
 // src/components/sections/DeepDive/DeepDiveSection.tsx
-
+import { useState, useEffect } from "react";
 import DeepDiveCard from "./DeepDiveCard";
 import DeepDiveSidebar from "./DeepDiveSidebar";
-// Assuming this path to your allPosts data is correct
-import { allPosts } from "../../../data/blog";
+import { getDeepDivePosts } from "@my-sanity/queries";
+import type { BlogPost } from "src/data/types";
 
 export default function DeepDiveSection() {
-  const feature = allPosts.find(
-    (p) => p.slug === "my-journey-into-frontend-development"
-  );
+  const [featurePost, setFeaturePost] = useState<BlogPost | null>(null);
+  const [sidePosts, setSidePosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const sidePosts = allPosts.filter((p) =>
-    [
-      "jennifer-aniston-depression-new-album",
-      "corsair-hs80-headset-review",
-      "self-driving-cars-everything",
-    ].includes(p.slug)
-  );
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const { feature, sidePosts } = await getDeepDivePosts();
+        if (feature) {
+          setFeaturePost(feature);
+        }
+        setSidePosts(sidePosts);
+      } catch (err) {
+        console.error("Failed to fetch deep dive posts:", err);
+        setError("Failed to load deep dive posts.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
 
-  // --- TEMPORARY DEBUGGING START ---
-  // Add console logs here to check if 'feature' is found
-  console.log("DeepDiveSection: allPosts data:", allPosts);
-  console.log("DeepDiveSection: Looking for slug 'impact-of-covid-on-airport-business'");
-  console.log("DeepDiveSection: Found feature post:", feature);
-  // --- TEMPORARY DEBUGGING END ---
+  if (loading) {
+    return (
+      <section className="bg-white dark:bg-gray-900 py-12 px-4 md:px-8 lg:px-16">
+        <div className="text-center text-gray-500 dark:text-gray-400">
+          Loading deep dive posts...
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="bg-white dark:bg-gray-900 py-12 px-4 md:px-8 lg:px-16">
+        <div className="text-center text-red-500">{error}</div>
+      </section>
+    );
+  }
+
+  if (!featurePost) {
+    return null;
+  }
 
   return (
-    <section className="py-16 px-4 md:px-8 bg-white dark:bg-gray-900">
-      {/* Section Header */}
-      <div className="mb-10 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-          Deep Dive. <span className="text-blue-600">In depth Understanding</span>
-        </h2>
-      </div>
-
-      <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-10">
-        {/* Left Featured Card (55%) */}
-        <div className="lg:w-[55%] w-full">
-          {feature && ( // This condition is crucial for rendering
-            <DeepDiveCard
-              post={feature} // <--- This should be 'post={feature}'
-            />
-          )}
-        </div>
-
-        {/* Right Sidebar Cards (45%) */}
-        <div className="lg:w-[45%] w-full space-y-6">
-          {sidePosts.map((post) => (
-            <DeepDiveSidebar
-              key={post.id}
-              title={post.title}
-              excerpt={post.excerpt}
-              author={post.author}
-              date={post.date}
-              readTime={post.readTime}
-              imageUrl={post.imageUrl}
-              slug={post.slug}
-            />
-          ))}
+    <section className="bg-white dark:bg-gray-900 py-12 px-4 md:px-8 lg:px-16">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8">Deep Dive</h2>
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-2/3">
+            <DeepDiveCard post={featurePost} />
+          </div>
+          <div className="lg:w-1/3 space-y-4">
+            {/* FIX: Correctly map over sidePosts and pass a single 'post' prop */}
+            {sidePosts.map((post) => (
+              <DeepDiveSidebar key={post._id} post={post} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

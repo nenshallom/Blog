@@ -38,7 +38,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight uppercase z-0"
       >
-        <span className="text-green-500">Real Tools</span> and Tech
+        <span className="text-green-500">Real Tools</span> in Tech
         <br />
         Bringing <span className="text-green-500">Real Growth</span> to your
         <span className="text-[#184E59]"> Hustle</span>

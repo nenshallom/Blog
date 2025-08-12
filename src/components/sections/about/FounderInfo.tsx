@@ -8,9 +8,9 @@ export default function FounderInfoSection() {
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col items-center text-center">
         {/* Avatar */}
         <img
-          src="/images/founderAvatar.png" // Replace with your actual avatar image path
+          src="/images/Founder.jpeg" // Replace with your actual avatar image path
           alt="Founder"
-          className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-blue-500"
+          className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-green-300"
         />
 
         {/* Name and Role */}
@@ -22,7 +22,7 @@ export default function FounderInfoSection() {
         </p>
 
         {/* Contact Links */}
-        <div className="flex gap-4 mt-2 text-blue-600 dark:text-blue-400">
+        <div className="flex gap-4 mt-2 text-green-500 dark:text-green-400">
           <a
             href="https://www.linkedin.com/in/YOUR_LINKEDIN"
             target="_blank"

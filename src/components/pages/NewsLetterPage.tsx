@@ -57,7 +57,7 @@ export default function NewsletterPage() {
                 to={item.href}
                 key={item.label}
                 aria-label={item.label}
-                className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500 transition"
+                className="text-gray-500 dark:text-gray-400 hover:text-[#184E59] dark:hover:text-[#184E59] transition"
               >
                 <Icon size={24} />
               </Link>

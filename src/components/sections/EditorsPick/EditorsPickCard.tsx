@@ -1,63 +1,42 @@
-import { Link } from "react-router-dom";
+// src/components/sections/EditorsPick/EditorsPickCard.tsx
+import { Link } from 'react-router-dom';
+import type { BlogPost } from 'src/data/types';
+import { User } from 'lucide-react'; // Import icons
 
-interface EditorPickCardProps {
-  title: string;
-  excerpt: string;
-  slug: string;
-  tags: string[];
-  imageUrl: string;
-  likes?: number; // Made optional as per new requirement
-  comments?: number; // Made optional as per new requirement
-  readTime: string;
+interface EditorsPickCardProps {
+  post: BlogPost;
 }
 
-export default function EditorPickCard({
-  title,
-  excerpt,
-  slug,
-  tags,
-  imageUrl,
-  readTime,
-}: EditorPickCardProps) {
+export default function EditorsPickCard({ post }: EditorsPickCardProps) {
+  const { title, excerpt, imageUrl, publishedAt, category, readTime, authorName, slug } = post;
+  
   return (
-    <Link to={`/blog/${slug}`}>
-      <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow hover:shadow-lg transition duration-300 group">
-        {/* Image Section */}
-        <div className="relative">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-52 object-cover group-hover:brightness-95 transition duration-300"
-          />
-
-          {/* Tags */}
-          <div className="absolute top-3 left-3 flex gap-2 z-10">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="bg-white/80 text-sm px-3 py-1 rounded-full font-medium text-gray-800"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Text Section */}
-        <div className="p-5">
-          <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2 leading-snug group-hover:underline">
-            {title}
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
-            {excerpt}
-          </p>
-
-          {/* Footer -  */}
-          <div className="flex items-center justify-between mt-4 text-sm text-gray-500 dark:text-gray-400">
-            <div className="flex items-center gap-2">
-              <span>{readTime}</span>
-            </div>
-          </div>
+    <Link to={`/blog/${slug}`} className="block relative group">
+      <img
+        src={imageUrl}
+        alt={title}
+        className="w-full h-64 object-cover rounded-lg shadow-lg"
+      />
+      <div className="p-4">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">
+          {title}
+        </h3>
+        {/* FIX: Added excerpt */}
+        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 mb-2 line-clamp-2">
+          {excerpt}
+        </p>
+        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          {/* FIX: Added author name and read time */}
+          <User size={14} className="mr-1" />
+          <span>{authorName}</span>
+          {/* HIDE CATEGORY */}
+          {/* <span className="mx-2">•</span>  */}
+          {/* <span>{category}</span> */}
+          <span className="mx-2">•</span>
+          {/* FIX: Dynamically display readTime and add "min read" */}
+          <span>{readTime ? `${readTime} min read` : '5 min read'}</span>
+          <span className="mx-2">•</span>
+          <span>{new Date(publishedAt).toLocaleDateString()}</span>
         </div>
       </div>
     </Link>

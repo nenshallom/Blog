@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import FooterNav from "./FooterNav";
 import FooterTags from "./FooterTags";
 import SocialLinks from "./SocialLinks";
-import NewsletterForm from "./NewsletterForm";
+// import NewsletterForm from "./NewsletterForm";
 
 export default function Footer() {
   return (
@@ -29,7 +29,7 @@ export default function Footer() {
         {/* Column 2: Navigation and Newsletter */}
         <div className="flex flex-col gap-4">
           <FooterNav />
-          <NewsletterForm />
+          {/* <NewsletterForm /> */}
         </div>
 
         {/* Column 3: Tags and Socials */}

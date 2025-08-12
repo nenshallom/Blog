@@ -1,48 +1,46 @@
 // src/components/sections/EditorsPick/EditorsSidebar.tsx
-// This file is used by EditorsPickSection.tsx
+import { Link } from 'react-router-dom';
+import type { BlogPost } from 'src/data/types';
+// import { BookOpen } from 'lucide-react';
 
-import { Link } from "react-router-dom";
-
-interface EditorsPickSidebarProps {
-  title: string;
-  imageUrl: string;
-  date: string;
-  readTime: string;
-  slug: string;
+interface EditorsSidebarProps {
+  posts: BlogPost[];
 }
 
-export default function EditorsPickSidebar({
-  title,
-  imageUrl,
-  date,
-  readTime,
-  slug,
-}: EditorsPickSidebarProps) {
+export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
   return (
-    <Link to={`/blog/${slug}`}>
-      <div className="flex gap-3 items-start py-3 transition duration-300 hover:scale-[1.015] hover:shadow-md group"> {/* Removed border-b and last:border-b-0 */}
-        {/* Thumbnail */}
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-14 h-14 sm:w-16 sm:h-16 rounded-md object-cover flex-shrink-0"
-        />
-
-        {/* Content */}
-        <div className="flex flex-col justify-center">
-          {/* Title */}
-          <h4 className="text-sm font-semibold text-gray-900 dark:text-white leading-tight line-clamp-2 hover:underline">
-            {title}
-          </h4>
-
-          {/* Meta Info */}
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-2">
-            <span>{date}</span>
-            <span className="mx-1">/</span>
-            <span>{readTime}</span>
-          </div>
-        </div>
-      </div>
-    </Link>
+    <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+        More from Editor&apos;s Pick
+      </h3>
+      <ul className="space-y-4">
+        {posts.map((post) => (
+          <li key={post._id}>
+            <Link
+              to={`/blog/${post.slug}`}
+              className="flex items-start group hover:text-blue-500 transition-colors"
+            >
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-16 h-16 object-cover rounded-md mr-4"
+              />
+              <div>
+                <h4 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">
+                  {post.title}
+                </h4>
+                {/* FIX: Added excerpt here */}
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                  {post.excerpt}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  {post.authorName} • {new Date(post.publishedAt).toLocaleDateString()}
+                </p>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
