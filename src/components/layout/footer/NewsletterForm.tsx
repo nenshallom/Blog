@@ -10,7 +10,7 @@ export default function NewsletterForm() {
 
   // Note: The form submission is handled by Netlify, so the
   // onSubmit logic here is for state management only.
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = () => {
     // You can still perform client-side validation here if needed
     setIsLoading(true);
     setStatus("idle");

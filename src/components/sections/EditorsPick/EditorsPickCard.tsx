@@ -8,7 +8,7 @@ interface EditorsPickCardProps {
 }
 
 export default function EditorsPickCard({ post }: EditorsPickCardProps) {
-  const { title, excerpt, imageUrl, publishedAt, category, readTime, authorName, slug } = post;
+  const { title, excerpt, imageUrl, publishedAt, readTime, authorName, slug } = post;
   
   return (
     <Link to={`/blog/${slug}`} className="block relative group">
