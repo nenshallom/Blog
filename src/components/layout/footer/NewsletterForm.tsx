@@ -26,11 +26,12 @@ export default function NewsletterForm() {
         name="newsletter" // This is the form name that will appear in Netlify dashboard
         method="POST" 
         data-netlify="true" 
+        netlify-honeypot="bot-field"
         onSubmit={handleSubmit} 
         className="space-y-4"
-        netlify
       >
         <input type="hidden" name="form-name" value="newsletter" />
+        <input type="text" name="bot-field" className="hidden" />
 
         {/* Your form fields remain the same */}
         <div className="flex flex-col sm:flex-row gap-3">
