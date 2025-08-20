@@ -37,7 +37,7 @@ export default function Latest() {
 
   return (
     <section className="py-16 px-4 max-w-5xl mx-auto">
-      <h2 className="text-4xl font-bold mb-8 text-left text-green-700">Latest</h2>
+      <h2 className="text-4xl font-bold mb-8 text-left">Latest</h2>
 
       <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {latestPosts.map((post) => (

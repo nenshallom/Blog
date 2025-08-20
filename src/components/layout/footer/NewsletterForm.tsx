@@ -28,6 +28,7 @@ export default function NewsletterForm() {
         data-netlify="true" 
         onSubmit={handleSubmit} 
         className="space-y-4"
+        netlify
       >
         <input type="hidden" name="form-name" value="newsletter" />
 
