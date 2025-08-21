@@ -27,7 +27,7 @@ export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
                 className="w-16 h-16 object-cover rounded-md mr-4"
               />
               <div>
-                <h4 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-[#184E59] transition-colors line-clamp-1">
+                <h4 className="text-base font-bold text-gray-900 dark:text-white transition-colors line-clamp-1">
                   {post.title}
                 </h4>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 line-clamp-1">{post.excerpt}</p>
