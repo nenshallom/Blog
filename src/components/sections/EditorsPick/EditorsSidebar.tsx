@@ -1,7 +1,8 @@
 // src/components/sections/EditorsPick/EditorsSidebar.tsx
 import { Link } from 'react-router-dom';
 import type { BlogPost } from 'src/data/types';
-// import { BookOpen } from 'lucide-react';
+import { GoClock } from "react-icons/go";
+import { HiUserCircle } from "react-icons/hi";
 
 interface EditorsSidebarProps {
   posts: BlogPost[];
@@ -18,7 +19,7 @@ export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
           <li key={post._id}>
             <Link
               to={`/blog/${post.slug}`}
-              className="flex items-start group hover:text-blue-500 transition-colors"
+              className="flex items-start group p-2 rounded-lg transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               <img
                 src={post.imageUrl}
@@ -26,16 +27,16 @@ export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
                 className="w-16 h-16 object-cover rounded-md mr-4"
               />
               <div>
-                <h4 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">
+                <h4 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-[#184E59] transition-colors line-clamp-1">
                   {post.title}
                 </h4>
-                {/* FIX: Added excerpt here */}
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
-                  {post.excerpt}
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {post.authorName} • {new Date(post.publishedAt).toLocaleDateString()}
-                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 line-clamp-1">{post.excerpt}</p>
+                <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2 ">
+                  <HiUserCircle />
+                  <span>{post.authorName || 'Author'}</span>
+                  <GoClock />
+                  <span>{post.readTime || '5 min read'} min</span>
+                </div>
               </div>
             </Link>
           </li>

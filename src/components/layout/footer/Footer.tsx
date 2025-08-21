@@ -41,7 +41,7 @@ export default function Footer() {
 
       {/* Footer bottom */}
       <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-center text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} GGN. All rights reserved.
+        © {new Date().getFullYear()} Code&Cultivate. All rights reserved.
       </div>
     </footer>
   );

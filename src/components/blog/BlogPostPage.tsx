@@ -6,6 +6,9 @@ import { PortableText } from '@portabletext/react';
 import type { BlogPost } from 'src/data/types';
 import { urlFor } from '@my-sanity/image';
 import { calculateReadTime } from '@utils/readTime';
+import { GoClock } from "react-icons/go";
+import { BiSolidBookReader } from "react-icons/bi";
+
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -94,20 +97,26 @@ export default function BlogPostPage() {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           {post.title}
         </h1>
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          {post.category} • {new Date(post.publishedAt).toLocaleDateString()} • {readTime}
+  
+        {post.author && (
+        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
+          {/* <span>{new Date(publishedAt).toLocaleDateString()}</span> */}
+          <BiSolidBookReader className='text-[#184E59]'/>
+          <span className="text-green-500">{post.category || 'Category'}</span>
+          <GoClock className='text-[#184E59]'/>
+          <span className='text-green-500'>{readTime || '5 min read'}</span>
         </div>
-        
+        )}
         {post.author && (
           <div className="flex items-center mt-8 mb-8">
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
-              className="w-12 h-12 rounded-full object-cover mr-4"
+              className="w-9 h-9 rounded-full object-cover mr-4"
             />
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white">{post.author.name}</h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(post.publishedAt).toLocaleDateString()}</p>
+              <h2 className="text-xl font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
+              {/* <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(post.publishedAt).toLocaleDateString()}</p> */}
             </div>
           </div>
         )}

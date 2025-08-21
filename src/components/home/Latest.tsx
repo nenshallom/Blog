@@ -47,7 +47,7 @@ export default function Latest() {
 
       <div className="mt-10 flex justify-center">
         <Link to="/blog">
-          <button className="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 transition">
+          <button className="px-6 py-3 bg-green-500 text-white rounded hover:bg-green-600 transition">
             View All Latest →
           </button>
         </Link>

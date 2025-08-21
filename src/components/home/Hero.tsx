@@ -11,7 +11,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 text-center mt-16 overflow-hidden">
+    <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 dark:bg-gray-900 text-center mt-16 overflow-hidden">
       {/* Background SVG Image – responsive and animated */}
       <motion.img
         initial={{ 
