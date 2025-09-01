@@ -1,4 +1,3 @@
-// src/components/sections/home/Hero.tsx
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";

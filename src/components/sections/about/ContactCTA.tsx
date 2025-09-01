@@ -24,7 +24,13 @@ export default function ContactFormSection() {
           Send a Message
         </h3>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true" 
+          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit} 
+          className="space-y-6">
           {/* Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

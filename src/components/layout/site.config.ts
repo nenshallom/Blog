@@ -1,4 +1,4 @@
-import { FaYoutube, FaFacebook,  FaLinkedin } from "react-icons/fa";
+import { FaFacebook,  FaLinkedin,  FaInstagramSquare } from "react-icons/fa";
 import { PiXLogoBold } from "react-icons/pi";
 
 
@@ -18,8 +18,8 @@ export const footerTags = [
 ];
 
 export const socialLinks = [
-  { href: "#", label: "YouTube", icon: FaYoutube },
-  { href: "#", label: "Twitter", icon: PiXLogoBold },
+  { href: "https://www.instagram.com/codeandcultivatenow/", label: "Instagram", icon:  FaInstagramSquare },
+  { href: "https://x.com/CodeCultivate", label: "Twitter", icon: PiXLogoBold },
   { href: "#", label: "Facebook", icon: FaFacebook },
   { href: "#", label: "LinkedIn", icon:  FaLinkedin},
 ];

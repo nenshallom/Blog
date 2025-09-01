@@ -65,37 +65,6 @@ export default function NewsletterForm() {
           required
         />
 
-        <div className="mt-4">
-          <p className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">I am a:</p>
-          <div className="flex items-center space-x-4">
-            <div>
-              <input
-                type="radio"
-                name="role"
-                id="role-business-owner"
-                value="Business Owner"
-                checked={role === "Business Owner"}
-                onChange={(e) => setRole(e.target.value)}
-                className="mr-1"
-                required
-              />
-              <label htmlFor="role-business-owner" className="text-sm text-gray-700 dark:text-gray-300">Business Owner</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="role"
-                id="role-ai-enthusiast"
-                value="AI Enthusiast"
-                checked={role === "AI Enthusiast"}
-                onChange={(e) => setRole(e.target.value)}
-                className="mr-1"
-              />
-              <label htmlFor="role-ai-enthusiast" className="text-sm text-gray-700 dark:text-gray-300">AI Enthusiast</label>
-            </div>
-          </div>
-        </div>
-
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <button
             type="submit"

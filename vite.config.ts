@@ -12,7 +12,6 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './src/utils'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@assets': path.resolve(__dirname, './src/assets'),
-      // Change the alias name to avoid conflict
       '@my-sanity': path.resolve(__dirname, './src/sanity'),
     },
   },
