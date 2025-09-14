@@ -1,59 +1,44 @@
-// src/sections/blog/BlogFilterBar.tsx
+// src/components/blog/BlogFilterBar.tsx
+import Select from '@components/ui/Select' // Import our new Select component
+
 interface BlogFilterBarProps {
-  categories: string[];
-  selectedCategory: string;
-  onCategoryChange: (category: string) => void;
+  categories: string[]
+  selectedCategory: string
+  onCategoryChange: (category: string) => void
+  sortOptions: string[]
+  selectedSort: string
+  onSortChange: (sort: string) => void
 }
 
 export default function BlogFilterBar({
   categories,
   selectedCategory,
   onCategoryChange,
+  sortOptions,
+  selectedSort,
+  onSortChange,
 }: BlogFilterBarProps) {
-  const sortOptions = ["Newest", "Oldest", "Popular"];
-
   return (
-    <div className="flex flex-col md:flex-row items-left justify-left gap-4 mb-8">
+    <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
       {/* Filter */}
-      <div className="flex items-center gap-4">
-        <label
-          htmlFor="category"
-          className="text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Category:
-        </label>
-        <select
-          id="category"
-          value={selectedCategory}
-          onChange={(e) => onCategoryChange(e.target.value)}
-          className="rounded px-3 py-2 bg-white dark:bg-gray-800 text-sm border dark:border-gray-700 focus:outline-none"
-        >
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+      <div className="w-full md:w-auto">
+        <Select
+          label="Category"
+          options={categories}
+          selected={selectedCategory}
+          onChange={onCategoryChange}
+        />
       </div>
 
-      {/* Sort - (Optional: You can later add props to control sort too) */}
-      <div className="flex items-center gap-4">
-        <label
-          htmlFor="sort"
-          className="text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Sort by:
-        </label>
-        <select
-          id="sort"
-          defaultValue="Newest"
-          className="rounded px-3 py-2 bg-white dark:bg-gray-800 text-sm border dark:border-gray-700 focus:outline-none"
-        >
-          {sortOptions.map((sort) => (
-            <option key={sort}>{sort}</option>
-          ))}
-        </select>
+      {/* Sort */}
+      <div className="w-full md:w-auto">
+        <Select
+          label="Sort by"
+          options={sortOptions}
+          selected={selectedSort}
+          onChange={onSortChange}
+        />
       </div>
     </div>
-  );
+  )
 }

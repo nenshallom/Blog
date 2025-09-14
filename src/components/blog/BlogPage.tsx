@@ -1,54 +1,73 @@
-// src/components/sections/blog/BlogPage.tsx
-import { useEffect, useState } from "react";
-import BlogFilterBar from "./BlogFilterBar";
-import BlogList from "./BlogList";
-import Pagination from "./Pagination";
-import { getAllBlogPosts } from "@my-sanity/queries";  // Adjust the import path as necessary
-import type { BlogPost } from "src/data/types"; // Adjust the import path as necessary
+// src/components/blog/BlogPage.tsx
+import { useEffect, useState, useMemo } from 'react'
+import BlogFilterBar from './BlogFilterBar'
+import BlogList from './BlogList'
+import Pagination from './Pagination'
+import { getAllBlogPosts } from '@my-sanity/queries' // Adjust the import path as necessary
+import type { BlogPost } from 'src/data/types' // Adjust the import path as necessary
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 6
+const SORT_OPTIONS = ['Newest', 'Oldest']
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogPost[]>([])
+  const [categories, setCategories] = useState<string[]>([])
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [loading, setLoading] = useState(true)
+  const [selectedSort, setSelectedSort] = useState('Newest')
 
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const allPosts = await getAllBlogPosts();
-        setPosts(allPosts);
-        setLoading(false);
+        const allPosts = await getAllBlogPosts()
+        setPosts(allPosts)
+        setLoading(false)
 
         // Extract and set categories dynamically
         const uniqueCategories = [
-          "All",
+          'All',
           ...new Set(allPosts.map((post) => post.category)),
-        ];
-        setCategories(uniqueCategories);
+        ]
+        setCategories(uniqueCategories)
       } catch (error) {
-        console.error("Failed to fetch posts:", error);
-        setLoading(false);
+        console.error('Failed to fetch posts:', error)
+        setLoading(false)
       }
     }
-    fetchPosts();
-  }, []);
+    fetchPosts()
+  }, [])
 
-  // Filter logic
-  const filteredPosts =
-    selectedCategory === "All"
-      ? posts
-      : posts.filter((post) => post.category === selectedCategory);
+  // Memoize the filtered and sorted posts to avoid re-calculating on every render
+  const processedPosts = useMemo(() => {
+    let filtered =
+      selectedCategory === 'All'
+        ? posts
+        : posts.filter((post) => post.category === selectedCategory)
+
+    if (selectedSort === 'Oldest') {
+      filtered = filtered.sort(
+        (a, b) =>
+          new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
+      )
+    } else {
+      // Default to Newest
+      filtered = filtered.sort(
+        (a, b) =>
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      )
+    }
+
+    return filtered
+  }, [posts, selectedCategory, selectedSort])
 
   // Pagination logic
-  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-  const currentPosts = filteredPosts.slice(
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE
+  const currentPosts = processedPosts.slice(
     startIndex,
     startIndex + POSTS_PER_PAGE
-  );
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  )
+  const totalPages = Math.ceil(processedPosts.length / POSTS_PER_PAGE)
 
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-900 min-h-screen mt-10">
@@ -58,8 +77,14 @@ export default function BlogPage() {
           categories={categories}
           selectedCategory={selectedCategory}
           onCategoryChange={(cat: string) => {
-            setSelectedCategory(cat);
-            setCurrentPage(1); // Reset to page 1 on category change
+            setSelectedCategory(cat)
+            setCurrentPage(1) // Reset to page 1 on category change
+          }}
+          sortOptions={SORT_OPTIONS}
+          selectedSort={selectedSort}
+          onSortChange={(sort: string) => {
+            setSelectedSort(sort)
+            setCurrentPage(1) // Reset to page 1 on sort change
           }}
         />
 
@@ -84,5 +109,5 @@ export default function BlogPage() {
         )}
       </div>
     </section>
-  );
+  )
 }

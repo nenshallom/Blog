@@ -22,8 +22,8 @@
       "@utils/*": ["src/utils/*"],
       "@hooks/*": ["src/hooks/*"],
       "@assets/*": ["src/assets/*"],
-      // Update the alias path here as well
-      "@my-sanity/*": ["src/sanity/*"]
+      "@my-sanity/*": ["src/sanity/*"],
+      "@config/*": ["src/config/*"]
     },
 
     /* Linting */

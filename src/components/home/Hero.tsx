@@ -40,7 +40,7 @@ export default function Hero() {
         <span className="text-green-500">Real Tools</span> in Tech
         <br />
         Bringing <span className="text-green-500">Real Growth</span> to your
-        <span className="text-[#184E59]"> Hustle</span>
+        <span className="text-[#184E59]"> Business</span>
       </motion.h1>
 
       {/* Subheading */}

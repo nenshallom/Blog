@@ -8,6 +8,7 @@ import { urlFor } from '@my-sanity/image';
 import { calculateReadTime } from '@utils/readTime';
 import { GoClock } from "react-icons/go";
 import { BiSolidBookReader } from "react-icons/bi";
+import SEO from '@components/Seo';
 
 
 export default function BlogPostPage() {
@@ -88,6 +89,15 @@ export default function BlogPostPage() {
 
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-900 min-h-screen mt-10">
+        <SEO
+        title={post.title}
+        description={post.excerpt}
+        image={post.imageUrl}
+        url={`https://codeandcultivate.netlify.app/${post.slug}`} 
+        isArticle={true}
+        publishedTime={post.publishedAt}
+        authorName={post.author?.name}
+      />
       <article className="max-w-3xl mx-auto">
         <img
           src={post.imageUrl}
@@ -112,11 +122,11 @@ export default function BlogPostPage() {
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
-              className="w-9 h-9 rounded-full object-cover mr-4"
+              className="w-6 h-6 rounded-full object-cover mr-4"
             />
             <div>
-              <h2 className="text-xl font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
-              {/* <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(post.publishedAt).toLocaleDateString()}</p> */}
+              <h2 className="text-xs font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
+              <p className="text-xs font-light text-gray-500 dark:text-gray-400">{new Date(post.publishedAt).toLocaleDateString()}</p>
             </div>
           </div>
         )}
@@ -124,7 +134,7 @@ export default function BlogPostPage() {
         <hr className="my-8 border-gray-200 dark:border-gray-700" />
         
         {post.content && (
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose prose-lg dark:prose-invert max-w-none">
             <PortableText value={post.content} components={components} />
           </div>
         )}

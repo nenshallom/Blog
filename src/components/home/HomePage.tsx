@@ -3,10 +3,12 @@ import Hero from "./Hero";
 import Latest from "./Latest";
 import EditorsPickSection from "../sections/EditorsPick/EditorsPickSection";
 import DeepDiveSection from "../sections/DeepDive/DeepDiveSection";
+import SEO from "@components/Seo";
 
 export default function HomePage() {
   return (
     <>
+    <SEO />
       <Hero />
       {/* <BlogList /> */}
       <Latest />

@@ -13,6 +13,7 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@my-sanity': path.resolve(__dirname, './src/sanity'),
+      '@config': path.resolve(__dirname, './src/config'),
     },
   },
   server: {
