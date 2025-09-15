@@ -4,13 +4,13 @@ import { FaLinkedin } from "react-icons/fa";
 
 export default function FounderInfoSection() {
   return (
-    <section className="py-10 px-4 md:px-8 lg:px-16 max-w-2xl mx-auto">
+    <section className=" px-4 md:px-8 lg:px-16 max-w-2xl mx-auto">
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex flex-col items-center text-center">
         {/* Avatar */}
         <img
           src="/images/Founder.jpeg" // Replace with your actual avatar image path
           alt="Founder"
-          className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-green-300"
+          className="w-24 h-24 rounded-full object-cover object-top   mb-4 border-2 border-green-100"
         />
 
         {/* Name and Role */}

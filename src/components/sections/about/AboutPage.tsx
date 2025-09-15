@@ -2,7 +2,7 @@
 import AboutHeader from "./AboutHeader";
 import AboutTextSection from "./AboutTextSection";
 import FounderInfoSection from "./FounderInfo";
-import ContactFormSection from "./ContactCTA";
+// import ContactFormSection from "./ContactCTA";
 import { motion } from "framer-motion";
 
 const sectionFade = {
@@ -57,7 +57,7 @@ export default function AboutPage() {
         variants={sectionFade}
         className="max-w-2xl mx-auto"
       >
-        <ContactFormSection />
+        {/* <ContactFormSection /> */}
       </motion.div>
     </section>
   );
