@@ -1,39 +1,39 @@
+// src/components/layout/footer/NewsletterForm.tsx
 import { useState } from "react";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [role, setRole] = useState("");
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  // The 'role' and 'status' state variables have been removed as they were unused.
   const [isLoading, setIsLoading] = useState(false);
 
-  // Note: The form submission is handled by Netlify, so the
-  // onSubmit logic here is for state management only.
-  const handleSubmit = () => {
-    // You can still perform client-side validation here if needed
+  const handleSubmit = (_event: React.FormEvent<HTMLFormElement>) => {
+    // This is a standard Netlify form submission.
+    // We don't need to prevent the default behavior or handle state manually
+    // as Netlify's bots will process the form submission automatically.
+    // We can, however, manage the loading state for a better UX.
     setIsLoading(true);
-    setStatus("idle");
-    // Netlify handles the actual POST request, so no fetch is needed
   };
 
   return (
     <div className="w-full max-w-xl mx-auto">
-      {/* FIX: Add the 'data-netlify' attribute and the hidden input field.
-        These are crucial for Netlify Forms to work.
-      */}
-      <form 
-        name="newsletter" // This is the form name that will appear in Netlify dashboard
-        method="POST" 
-        data-netlify="true" 
+      <form
+        name="newsletter"
+        method="POST"
+        data-netlify="true"
         netlify-honeypot="bot-field"
-        onSubmit={handleSubmit} 
+        onSubmit={handleSubmit}
         className="space-y-4"
       >
         <input type="hidden" name="form-name" value="newsletter" />
-        <input type="text" name="bot-field" className="hidden" />
+        <p className="hidden">
+          <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+          </label>
+        </p>
 
-        {/* Your form fields remain the same */}
+        {/* Form fields */}
         <div className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
@@ -68,7 +68,7 @@ export default function NewsletterForm() {
         <div className="flex flex-col sm:flex-row gap-3 mt-4">
           <button
             type="submit"
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md transition w-full"
+            className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm rounded-md transition w-full disabled:bg-gray-400"
             disabled={isLoading}
           >
             {isLoading ? "Submitting..." : "Subscribe"}
@@ -76,13 +76,10 @@ export default function NewsletterForm() {
         </div>
       </form>
 
-      {/* You can still display these messages, but you may need to update the logic */}
-      {status === "success" && (
-        <p className="text-green-600 text-sm mt-4">✅ Thanks for subscribing!</p>
-      )}
-      {status === "error" && (
-        <p className="text-red-600 text-sm mt-4">❌ There was an error. Please try again.</p>
-      )}
+      {/* For Netlify forms, you typically redirect to a "thank you" page on success.
+        Displaying a success/error message here requires more advanced JavaScript-based submission.
+        For now, removing the unused 'status' state is the correct fix.
+      */}
     </div>
   );
 }
