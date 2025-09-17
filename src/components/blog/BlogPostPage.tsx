@@ -4,7 +4,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { getPostBySlug } from '@my-sanity/queries';
 import type { BlogPost } from 'src/data/types';
 import { PortableText } from '@portabletext/react';
-import type { PortableTextComponent } from '@portabletext/react';
+import type { PortableTextMarkComponentProps } from '@portabletext/react';
 import { urlFor } from '@my-sanity/image';
 import { calculateReadTime } from '@utils/readTime';
 import { GoClock } from 'react-icons/go';
@@ -21,7 +21,7 @@ type SanityLink = {
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  
+
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export default function BlogPostPage() {
         setLoading(false);
       }
     }
-    
+
     fetchPost();
   }, [slug]);
 
@@ -63,16 +63,16 @@ export default function BlogPostPage() {
   if (!post) {
     return <Navigate to="/blog" replace />;
   }
-  
+
   const readTime = post.content ? calculateReadTime(post.content) : '1 min read';
 
   const mainComponents = {
     types: {
       image: ({ value }: { value: any }) => (
         <div className="flex justify-center my-8">
-          <img 
-            src={urlFor(value).url()} 
-            alt={value.alt || 'blog post image'} 
+          <img
+            src={urlFor(value).url()}
+            alt={value.alt || 'blog post image'}
             className="rounded-lg shadow-lg max-w-full md:max-w-[75%] lg:max-w-[60%] h-auto"
           />
         </div>
@@ -80,8 +80,8 @@ export default function BlogPostPage() {
       table: Table,
     },
     marks: {
-      // FIX: Use the correct type and signature here as well
-      link: (props: PortableTextComponent<SanityLink>) => {
+      // Use the correctly imported type
+      link: (props: PortableTextMarkComponentProps<SanityLink>) => {
         const { children, value } = props;
         const rel = !value?.href?.startsWith('/') ? 'noreferrer noopener' : undefined;
         return (
@@ -110,7 +110,7 @@ export default function BlogPostPage() {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           {post.title}
         </h1>
-  
+
         {post.author && (
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
           <BiSolidBookReader className='text-[#184E59]'/>
@@ -133,7 +133,7 @@ export default function BlogPostPage() {
         )}
 
         <hr className="my-8 border-gray-200 dark:border-gray-700" />
-        
+
         {post.content && (
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <PortableText value={post.content} components={mainComponents} />
