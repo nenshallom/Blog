@@ -2,13 +2,21 @@
 import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { getPostBySlug } from '@my-sanity/queries';
-import { PortableText } from '@portabletext/react';
 import type { BlogPost } from 'src/data/types';
+import { PortableText } from '@portabletext/react';
+import type { PortableTextComponent } from '@portabletext/react';
 import { urlFor } from '@my-sanity/image';
 import { calculateReadTime } from '@utils/readTime';
-import { GoClock } from "react-icons/go";
-import { BiSolidBookReader } from "react-icons/bi";
+import { GoClock } from 'react-icons/go';
+import { BiSolidBookReader } from 'react-icons/bi';
+import Table from './Table'; // Import the new Table component
 import SEO from '@components/Seo';
+
+// Define a type for our specific link annotation
+type SanityLink = {
+  _type: 'link';
+  href: string;
+};
 
 
 export default function BlogPostPage() {
@@ -58,22 +66,7 @@ export default function BlogPostPage() {
   
   const readTime = post.content ? calculateReadTime(post.content) : '1 min read';
 
-  const components = {
-    block: {
-      h1: ({ children }: any) => <h1 className="text-4xl font-bold mt-8 mb-4">{children}</h1>,
-      h2: ({ children }: any) => <h2 className="text-3xl font-bold mt-8 mb-4">{children}</h2>,
-      h3: ({ children }: any) => <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>,
-      normal: ({ children }: any) => <p className="text-lg leading-relaxed mb-6">{children}</p>,
-      blockquote: ({ children }: any) => <blockquote className="border-l-4 border-green-500 pl-4 italic my-6">{children}</blockquote>,
-    },
-    list: {
-      bullet: ({ children }: any) => <ul className="list-disc list-inside mb-4 pl-4">{children}</ul>,
-      number: ({ children }: any) => <ol className="list-decimal list-inside mb-4 pl-4">{children}</ol>,
-    },
-    listItem: {
-      bullet: ({ children }: any) => <li className="mb-2">{children}</li>,
-      number: ({ children }: any) => <li className="mb-2">{children}</li>,
-    },
+  const mainComponents = {
     types: {
       image: ({ value }: { value: any }) => (
         <div className="flex justify-center my-8">
@@ -84,18 +77,28 @@ export default function BlogPostPage() {
           />
         </div>
       ),
+      table: Table,
+    },
+    marks: {
+      // FIX: Use the correct type and signature here as well
+      link: (props: PortableTextComponent<SanityLink>) => {
+        const { children, value } = props;
+        const rel = !value?.href?.startsWith('/') ? 'noreferrer noopener' : undefined;
+        return (
+          <a href={value?.href || '#'} rel={rel} className="text-blue-500 hover:underline">
+            {children}
+          </a>
+        );
+      },
     },
   };
 
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-900 min-h-screen mt-10">
-        <SEO
+      <SEO
         title={post.title}
         description={post.excerpt}
-        image={post.imageUrl}
-        url={`https://codeandcultivate.netlify.app/${post.slug}`} 
         isArticle={true}
-        publishedTime={post.publishedAt}
         authorName={post.author?.name}
       />
       <article className="max-w-3xl mx-auto">
@@ -110,7 +113,6 @@ export default function BlogPostPage() {
   
         {post.author && (
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
-          {/* <span>{new Date(publishedAt).toLocaleDateString()}</span> */}
           <BiSolidBookReader className='text-[#184E59]'/>
           <span className="text-green-500">{post.category || 'Category'}</span>
           <GoClock className='text-[#184E59]'/>
@@ -122,11 +124,10 @@ export default function BlogPostPage() {
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
-              className="w-6 h-6 rounded-full object-cover mr-4"
+              className="w-9 h-9 rounded-full object-cover mr-4"
             />
             <div>
-              <h2 className="text-xs font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
-              <p className="text-xs font-light text-gray-500 dark:text-gray-400">{new Date(post.publishedAt).toLocaleDateString()}</p>
+              <h2 className="text-xl font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
             </div>
           </div>
         )}
@@ -135,7 +136,7 @@ export default function BlogPostPage() {
         
         {post.content && (
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <PortableText value={post.content} components={components} />
+            <PortableText value={post.content} components={mainComponents} />
           </div>
         )}
       </article>
