@@ -9,11 +9,19 @@ import ScrollToTop from "./components/ui/scrollToTop";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import NewsletterPage from "./components/pages/NewsLetterPage";
 import ErrorFallback from "@components/ui/ErrorFallback";
+import AnalyticsTracker from "@components/ui/AnalyticsTracker";
+import { initGA } from "@utils/analytics";
+import { useEffect } from "react";
 
 export default function App() {
+  useEffect(() => {
+    initGA();
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <AnalyticsTracker />
       <Layout>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Routes>
