@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { getPostBySlug } from '@my-sanity/queries';
+import SocialLinks from '@components/layout/footer/SocialLinks';
+import NewsletterForm from '@components/layout/footer/NewsletterForm';
 import type { BlogPost } from 'src/data/types';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextMarkComponentProps } from '@portabletext/react';
@@ -112,11 +114,14 @@ export default function BlogPostPage() {
         </h1>
 
         {post.author && (
-        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
+        <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
+          <div className='flex gap-3'>
           <BiSolidBookReader className='text-[#184E59]'/>
           <span className="text-green-500">{post.category || 'Category'}</span>
           <GoClock className='text-[#184E59]'/>
           <span className='text-green-500'>{readTime || '5 min read'}</span>
+          </div>
+          <SocialLinks />
         </div>
         )}
         {post.author && (
@@ -124,10 +129,10 @@ export default function BlogPostPage() {
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
-              className="w-9 h-9 rounded-full object-cover mr-4"
+              className="w-8 h-8 rounded-full object-cover mr-4"
             />
             <div>
-              <h2 className="text-xl font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
+              <h2 className="text-sm font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
             </div>
           </div>
         )}
@@ -140,6 +145,7 @@ export default function BlogPostPage() {
           </div>
         )}
       </article>
+      <NewsletterForm />
     </section>
   );
 }
