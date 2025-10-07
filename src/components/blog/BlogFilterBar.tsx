@@ -19,9 +19,9 @@ export default function BlogFilterBar({
   onSortChange,
 }: BlogFilterBarProps) {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
+    <div className="flex  items-center justify-start w-full lg:w-fit mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
       {/* Filter */}
-      <div className="w-full md:w-auto">
+      <div className="w-full text-sm">
         <Select
           label="Category"
           options={categories}
@@ -31,7 +31,7 @@ export default function BlogFilterBar({
       </div>
 
       {/* Sort */}
-      <div className="w-full md:w-auto">
+      <div className="w-full text-sm">
         <Select
           label="Sort by"
           options={sortOptions}
