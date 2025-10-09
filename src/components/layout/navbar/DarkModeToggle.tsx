@@ -8,9 +8,9 @@ export default function DarkModeToggle() {
       onClick={toggleDarkMode}
       className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center gap-2"
     >
-      <Moon className="w-5 h-5 hidden dark:block" />
-      <Sun className="w-5 h-5 dark:hidden" />
-      <span className="text-sm">Theme</span>
+      <Moon className="w-6 h-6 hidden dark:block" />
+      <Sun className="w-6 h-6 dark:hidden" />
+      <span className="text-md font-semibold">Theme</span>
     </button>
   );
 }

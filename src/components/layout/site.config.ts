@@ -1,12 +1,13 @@
 import { FaFacebook,  FaLinkedin,  FaInstagramSquare } from "react-icons/fa";
 import { PiXLogoBold } from "react-icons/pi";
+import { Home, BookOpen, User, Mail } from "lucide-react";
 
 
 export const MainLinks = [
-    { name: "Home", href: "/" },
-    { name: "Blog", href: "/blog" },
-    { name: "Our Story", href: "/ourStory" },
-    { name: "NewsLetter", href: "/NewsLetter" },
+  { name: "Home", href: "/", icon: Home },
+  { name: "Blog", href: "/blog", icon: BookOpen },
+  { name: "Our Story", href: "/ourStory", icon: User },
+  { name: "NewsLetter", href: "/NewsLetter", icon: Mail },
   ];
 
 export const footerTags = [

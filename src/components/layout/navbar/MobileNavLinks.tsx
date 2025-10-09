@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MainLinks } from "../site.config";
 import DarkModeToggle from "./DarkModeToggle";
 import BrandLogo from "./BrandLogo";
+import SocialLinks from "../footer/SocialLinks";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -30,20 +31,29 @@ export default function MobileNavLinks({ setMenuOpen }: Props) {
       </button>
       </div>
 
-      <nav className="mt-8 space-y-4">
-        {MainLinks.map((link) => (
-          <Link
-            key={link.name}
-            to={link.href}
-            onClick={() => setMenuOpen(false)}
-            className="block hover:text-blue-600 dark:hover:text-blue-400 transition"
-          >
-            {link.name}
-          </Link>
-        ))}
+      <nav className="pt-9 space-y-4">
+        {MainLinks.map((link) => {
+          // Destructure the icon from the link object
+          const Icon = link.icon;
+          return (
+            <Link
+              key={link.name}
+              to={link.href}
+              onClick={() => setMenuOpen(false)}
+              // Use flexbox to align icon and text
+              className="flex items-center font-medium pb-5 border-b gap-7 text-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
+              <Icon className="w-6 h-6" />
+              <span>{link.name}</span>
+            </Link>
+          );
+        })}
+        <DarkModeToggle />
+        <div className="flex justify-center pt-16">
+        <SocialLinks />
+      </div>
       </nav>
-
-      <DarkModeToggle />
+  
     </motion.div>
   );
 }
