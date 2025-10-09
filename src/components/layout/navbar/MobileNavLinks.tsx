@@ -49,8 +49,8 @@ export default function MobileNavLinks({ setMenuOpen }: Props) {
           );
         })}
         <DarkModeToggle />
-        <div className="flex justify-center pt-16">
-        <SocialLinks />
+        <div className="flex justify-center pt-10">
+        <SocialLinks/>
       </div>
       </nav>
   
