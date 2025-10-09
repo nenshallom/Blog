@@ -25,7 +25,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white text-black shadow dark:bg-gray-900 dark:text-white py-3">
+    <nav className="fixed top-0 w-full z-50 bg-white text-black shadow dark:bg-gray-900 dark:text-white py-1">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

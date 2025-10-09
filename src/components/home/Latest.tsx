@@ -37,9 +37,8 @@ export default function Latest() {
 
   return (
     <section className="py-16 px-4 max-w-5xl mx-auto">
-      <div className="flex items-center mb-4">
-        <h2 className="text-4xl font-medium mt-2 text-left">Latest</h2>
-        <span className="w-full align-middle border-2 rounded-xl border-opacity-30 border-10 border-green-500"></span>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-4xl font-medium mt-2 text-left">Latest Articles</h2>
       </div>
 
 

@@ -55,9 +55,8 @@ export default function EditorsPickSection() {
       <div className="max-w-7xl mx-auto">
         <div className='flex items-center mb-4'>
           <h2 className="text-4xl font-medium  text-gray-900 dark:text-white">
-            Editor&apos;s Pick
+            Editor&apos;s Pick Articles
           </h2>
-          <span className=" w-full align-middle border-2 rounded-xl border-opacity-30 border-10 border-green-500"></span>
         </div>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">

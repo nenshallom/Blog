@@ -138,7 +138,6 @@ export default function BlogPostPage() {
         )}
 
         <hr className="my-8 border-gray-200 dark:border-gray-700" />
-
         {post.content && (
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <PortableText value={post.content} components={mainComponents} />

@@ -55,8 +55,7 @@ export default function DeepDiveSection() {
     <section className="bg-white dark:bg-gray-900 py-12 px-4 md:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center mb-4">
-          <h2 className="text-3xl font-medium">Deep Dive</h2>
-          <span className="w-full align-middle border-2 rounded-xl border-opacity-30 border-10 border-green-500"></span>
+          <h2 className="text-3xl font-medium">Deep Dive Articles</h2>
         </div>
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-2/3">
