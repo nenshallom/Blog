@@ -41,7 +41,7 @@ export default function MobileNavLinks({ setMenuOpen }: Props) {
               to={link.href}
               onClick={() => setMenuOpen(false)}
               // Use flexbox to align icon and text
-              className="flex items-center font-medium pb-5 border-b gap-7 text-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              className="flex items-center font-medium pb-5 border-b border-gray-600 gap-7 text-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
               <Icon className="w-6 h-6" />
               <span>{link.name}</span>
@@ -49,7 +49,7 @@ export default function MobileNavLinks({ setMenuOpen }: Props) {
           );
         })}
         <DarkModeToggle />
-        <div className="flex justify-center pt-10">
+        <div className="flex justify-center pt-8">
         <SocialLinks/>
       </div>
       </nav>
