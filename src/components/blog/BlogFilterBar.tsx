@@ -21,7 +21,7 @@ export default function BlogFilterBar({
   return (
     <div className="flex gap-2 items-center justify-between lg:justify-start w-full lg:w-fit mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
       {/* Filter */}
-      <div className="w-full text-xl">
+      <div className="w-full text-xs">
         <Select
           label="Category"
           options={categories}
@@ -31,7 +31,7 @@ export default function BlogFilterBar({
       </div>
 
       {/* Sort */}
-      <div className="w-full text-sm">
+      <div className="w-full text-xs">
         <Select
           label="Sort by"
           options={sortOptions}
