@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import BrandLogo from "@components/layout/navbar/BrandLogo";
 import { MainLinks } from "../site.config";
 import DarkModeToggle from "./DarkModeToggle";
 import MobileNavLinks from "./MobileNavLinks";
@@ -24,20 +25,11 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white text-black shadow dark:bg-gray-900 dark:text-white">
+    <nav className="fixed top-0 w-full z-50 bg-white text-black shadow dark:bg-gray-900 dark:text-white py-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="flex items-center rounded-lg overflow-hidden font-bold text-sm sm:text-base md:text-lg lg:text-xl shadow transition-colors duration-300">
-              <span className="px-1 sm:pr-0 py-1 bg-[#184E59] dark:bg-green-500 text-white transition-colors duration-300">
-                CodeAnd
-              </span>
-              <span className="pr-2  py-1 bg-green-500 dark:bg-[#184E59] text-white transition-colors duration-300">
-                Cultivate
-              </span>
-            </div>
-          </Link>
+          <BrandLogo />
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center space-x-6">
