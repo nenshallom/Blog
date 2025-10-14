@@ -1,8 +1,8 @@
 // Footer.tsx
-import { Link } from "react-router-dom";
 import FooterNav from "./FooterNav";
 import FooterTags from "./FooterTags";
 import SocialLinks from "./SocialLinks";
+import BrandLogo from "../navbar/BrandLogo";
 // import NewsletterForm from "./NewsletterForm";
 
 export default function Footer() {
@@ -12,17 +12,7 @@ export default function Footer() {
         {/* Column 1: Branding */}
         <div>
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="flex items-center rounded-md overflow-hidden font-bold text-xs sm:text-sm md:text-base shadow transition-colors duration-300">
-              <span className="px-1 sm:pl-2 py-0.5 bg-[#184E59] dark:bg-green-500 text-white transition-colors duration-300">
-                CodeAnd
-              </span>
-              <span className="pr-2 sm:px-2 py-0.5 bg-green-500 dark:bg-[#184E59] text-white transition-colors duration-300">
-                Cultivate
-              </span>
-            </div>
-          </Link>
-
+         <BrandLogo />
           <p className="text-sm mt-2">Real Tools. Real Growth.</p>
         </div>
 
@@ -41,7 +31,7 @@ export default function Footer() {
 
       {/* Footer bottom */}
       <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-4 text-xs text-center text-gray-500 dark:text-gray-400">
-        © {new Date().getFullYear()} Code&Cultivate. All rights reserved.
+        © {new Date().getFullYear()} CodeAndCultivate. All rights reserved.
       </div>
     </footer>
   );

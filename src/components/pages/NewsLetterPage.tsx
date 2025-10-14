@@ -26,8 +26,8 @@ export default function NewsletterPage() {
           <p className="text-lg text-gray-600 dark:text-gray-300">
             📨 Stay ahead of the loop
           </p>
-          <p className="text-md mt-2 text-gray-500 dark:text-gray-400">
-            Get the latest articles and insights weekly to grow yourself and your business.
+          <p className="text-md mt-2 text-gray-500 dark:text-gray-400">   
+            Join the Newsletter Waitlist and be the First to get Access to Exclusive Community only Insights, Scalable Systens, Free Webiners Q&A and so much More Coming.
           </p>
         </motion.div>
 
@@ -44,8 +44,8 @@ export default function NewsletterPage() {
 
       {/* Footer Message + Icons */}
       <div className="mt-20 text-center">
-        <p className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
-          We discuss and share ideas and tools that build your business.
+        <p className="text-sm text-gray-500 dark:text-gray-400 tracking-wide mb-4">
+          Follow us let's keep the discussion going, we share ideas and tools that build your business.
         </p>
 
         {/* Social Icons */}

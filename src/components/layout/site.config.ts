@@ -14,13 +14,13 @@ export const footerTags = [
   "#AI",
   "#BusinessTools",
   "#Productivity",
-  "#DeepDive",
+  "#Automation",
   "#Innovation",
 ];
 
 export const socialLinks = [
-  { href: "https://www.instagram.com/codeandcultivatenow/", label: "Instagram", icon:  FaInstagramSquare },
-  { href: "https://x.com/CodeCultivate", label: "Twitter", icon: PiXLogoBold },
+  { href: "https://www.instagram.com/codeandcultivateHQ/", label: "Instagram", icon:  FaInstagramSquare },
+  { href: "https://x.com/CodeCultivateHQ", label: "Twitter", icon: PiXLogoBold },
   { href: "#", label: "Facebook", icon: FaFacebook },
   { href: "#", label: "LinkedIn", icon:  FaLinkedin},
 ];

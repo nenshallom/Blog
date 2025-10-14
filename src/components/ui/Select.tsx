@@ -20,10 +20,10 @@ export default function Select({
     <div className="w-full md:w-48">
       <Listbox value={selected} onChange={onChange}>
         <div className="relative">
-          <Listbox.Label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <Listbox.Label className="block text-sm font-medium text-center text-gray-700 dark:text-gray-300 mb-1">
             {label}
           </Listbox.Label>
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white dark:bg-gray-800 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="relative w-full cursor-default rounded-md bg-white dark:bg-gray-800 py-2 pl-3 pr-10 text-left shadow-lg focus:outline-none focus-visible:border-green-700 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 text-md sm:text-sm border">
             <span className="block truncate">{selected}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronDown
@@ -38,14 +38,14 @@ export default function Select({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-gray-800 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute mt-1 max-h-60 lg:w-full overflow-auto rounded-md bg-white dark:bg-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm sm:text-sm ">
               {options.map((option, optionIdx) => (
                 <Listbox.Option
                   key={optionIdx}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active
-                        ? 'bg-amber-100 text-amber-900 dark:bg-gray-700 dark:text-white'
+                        ? 'bg-green-100 text-black dark:bg-gray-700 dark:text-white'
                         : 'text-gray-900 dark:text-gray-200'
                     }`
                   }
@@ -61,7 +61,7 @@ export default function Select({
                         {option}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-green-800 dark:text-green-200">
                           <Check className="h-5 w-5" aria-hidden="true" />
                         </span>
                       ) : null}

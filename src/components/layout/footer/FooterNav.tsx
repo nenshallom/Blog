@@ -8,7 +8,7 @@ export default function FooterNav() {
           <Link
           key={link.name}
           to={link.href}
-          className="hover:text-blue-600 dark:hover:text-blue-400 transition" >
+          className="hover:text-green-600 dark:hover:text-green-300 transition" >
           {link.name}
         </Link>
       ))}

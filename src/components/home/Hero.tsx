@@ -50,7 +50,7 @@ export default function Hero() {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="mt-6 text-left text-base sm:text-lg text-gray-600 dark:text-gray-400 z-10"
       >
-        Explore Tools, Solutions and Ideas to Grow and Scale your Business.
+        We Explore Tools, Solutions and Ideas to Grow and Scale your Business.
       </motion.p>
 
       {/* CTA Buttons */}

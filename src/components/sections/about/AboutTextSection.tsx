@@ -8,7 +8,7 @@ export default function AboutTextSection() {
         </p>
 
         <p>
-          Born at the crossroads of <strong>technology and agriculture</strong>, Code & Cultivate exists to show how everyday people — from farmers to founders — can use modern tools to grow their businesses, automate the boring stuff, and unlock real progress.
+          Born at the crossroads of <strong>love for technology and busy life of a Nigerian trying to make an honest living</strong>, Code & Cultivate exists to show how everyday people — from small business to Big business — can use modern tools to grow their businesses efficiently, cutting cost savinbg time, and unlock real progress.
         </p>
 
         <p>
@@ -18,7 +18,7 @@ export default function AboutTextSection() {
         <ul className="list-disc pl-6 space-y-2">
           <li><strong>AI made practical</strong> — No fluff, just real examples of how to use it in your hustle.</li>
           <li><strong>Automation for small teams</strong> — Because efficiency shouldn’t require a big budget.</li>
-          <li><strong>Lessons from the field</strong> — From the soil to the screen, every insight comes from experience.</li>
+          <li><strong>Lessons from the field</strong> — From the toil to the screen, every insight comes from experience.</li>
         </ul>
 
         <p>
