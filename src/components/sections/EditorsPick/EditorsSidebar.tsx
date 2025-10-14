@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom';
 import type { BlogPost } from 'src/data/types';
 import { GoClock } from "react-icons/go";
-import { HiUserCircle } from "react-icons/hi";
 
 interface EditorsSidebarProps {
   posts: BlogPost[];
@@ -32,8 +31,7 @@ export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
                 </h4>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 line-clamp-1">{post.excerpt}</p>
                 <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2 ">
-                  <HiUserCircle />
-                  <span>{post.authorName || 'Author'}</span>
+                  
                   <GoClock />
                   <span>{post.readTime || '5 min read'} min</span>
                 </div>

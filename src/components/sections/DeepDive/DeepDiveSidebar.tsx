@@ -2,14 +2,13 @@
 import { Link } from "react-router-dom";
 import type { BlogPost } from "src/data/types";
 import { GoClock } from "react-icons/go";
-import { HiUserCircle } from "react-icons/hi";
 
 interface DeepDiveSidebarProps {
   post: BlogPost;
 }
 
 export default function DeepDiveSidebar({ post }: DeepDiveSidebarProps) {
-  const { title, excerpt, imageUrl, readTime, authorName, slug } = post;
+  const { title, excerpt, imageUrl, readTime, slug } = post;
 
   return (
     <Link
@@ -29,8 +28,6 @@ export default function DeepDiveSidebar({ post }: DeepDiveSidebarProps) {
           {excerpt}
         </p>
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
-          <HiUserCircle />
-          <span>{authorName || 'Author'}</span>
           <GoClock />
           <span>{readTime || '5 min read'} min</span>
         </div>

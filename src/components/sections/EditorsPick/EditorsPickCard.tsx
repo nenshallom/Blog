@@ -35,7 +35,7 @@ export default function EditorsPickCard({ post }: EditorsPickCardProps) {
           <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 mb-2 line-clamp-2">
             {excerpt}
           </p>
-          <div className="flex text-xs text-gray-500 dark:text-gray-400 gap-2 mt-4">
+          <div className="flex text-xs items-center text-gray-500 dark:text-gray-400 gap-2 mt-4">
             <HiUserCircle />
             <span>{authorName}</span>
             <GoClock />
