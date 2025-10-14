@@ -63,15 +63,15 @@ export default function Hero() {
         <Link
           to="/blog"
           aria-label="Explore the blog"
-          className="px-6 py-3 rounded-full bg-green-500 text-white font-semibold hover:bg-green-600 transition"
+          className="px-6 py-3 rounded-full bg-green-500 text-[#111827] font-semibold hover:bg-green-600 transition"
         >
           Explore Blog
         </Link>
-
+          
         <Link
           to="/newsletter"
           aria-label="Subscribe to the newsletter"
-          className="px-6 py-3 rounded-full border border-green-500 text-green-600 font-semibold hover:bg-green-100 dark:hover:bg-gray-800 transition"
+          className="px-6 py-3 rounded-full border-2 border-[#0f1c38] dark:border-gray-500 text-[#111827] dark:text-white font-semibold hover:bg-green-100 dark:hover:bg-gray-800 transition"
         >
           Join Newsletter
         </Link>
