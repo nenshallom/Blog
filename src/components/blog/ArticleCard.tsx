@@ -51,8 +51,8 @@ export default function ArticleCard({ post }: ArticleCardProps) {
           className="w-full h-48 object-cover group-hover:brightness-95 transition duration-300"
         />
 
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 leading-tight line-clamp-1">
+        <div className="p-2">
+          <h3 className="text-md font-semibold text-gray-900 dark:text-white mb-2 leading-tight line-clamp-1">
             {title}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">

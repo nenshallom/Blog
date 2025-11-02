@@ -5,7 +5,7 @@ export default function SocialLinks() {
     <div className="flex items-center gap-4 mt-4 sm:mt-0">
       {socialLinks.map(({ href, label, icon: Icon }) => (
         <a key={label} href={href} aria-label={label}>
-          <Icon className="w-5 h-5 text-gray-500 hover:text-[#184E59] dark:text-gray-400 dark:hover:text-[#184E59] transition" />
+          <Icon className="w-4 h-4 text-gray-500 hover:text-[#184E59] dark:text-gray-400 dark:hover:text-[#184E59] transition" />
         </a>
       ))}
     </div>

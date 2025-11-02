@@ -66,7 +66,7 @@ export default function BlogPostPage() {
     return <Navigate to="/blog" replace />;
   }
 
-  const readTime = post.content ? calculateReadTime(post.content) : '1 min read';
+  const readTime = post.content ? calculateReadTime(post.content) : '1 min';
 
   const mainComponents = {
     types: {
@@ -109,17 +109,17 @@ export default function BlogPostPage() {
           alt={post.title}
           className="w-full h-64 object-cover rounded-lg mb-6"
         />
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4">
           {post.title}
         </h1>
 
         {post.author && (
         <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
-          <div className='flex gap-3'>
+          <div className='flex items-center gap-3'>
           <BiSolidBookReader className='text-[#184E59]'/>
           <span className="text-green-500">{post.category || 'Category'}</span>
           <GoClock className='text-[#184E59]'/>
-          <span className='text-green-500'>{readTime || '5 min read'}</span>
+          <span className='text-green-500'>{readTime || '5 min'}</span>
           </div>
           <SocialLinks />
         </div>

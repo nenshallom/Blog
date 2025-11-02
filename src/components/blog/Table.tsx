@@ -76,4 +76,4 @@ const Table: React.FC<TableProps> = ({ value }) => {
   );
 };
 
-export default Table;
+export default Table; 
