@@ -114,8 +114,8 @@ export default function BlogPostPage() {
         </h1>
 
         {post.author && (
-        <div className="flex flex-col text-xs text-gray-500 dark:text-gray-400 gap-4">
-          <div className='flex items-center gap-2'>
+        <div className="flex flex-col text-xs text-gray-500 dark:text-gray-400 pl-4">
+          <div className='flex items-center'>
             <div className='flex items-center gap-1'>
               <BiSolidBookReader className='text-[#184E59]'/>
               <span className="text-green-500">{post.category || 'Category'}</span>
@@ -129,7 +129,7 @@ export default function BlogPostPage() {
         </div>
         )}
         {post.author && (
-          <div className="flex items-center mt-8 mb-8">
+          <div className="flex items-center mt-5">
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
@@ -141,7 +141,7 @@ export default function BlogPostPage() {
           </div>
         )}
 
-        <hr className="my-8 border-gray-200 dark:border-gray-700" />
+        <hr className="my-4 border-gray-200 dark:border-gray-700" />
         {post.content && (
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <PortableText value={post.content} components={mainComponents} />
