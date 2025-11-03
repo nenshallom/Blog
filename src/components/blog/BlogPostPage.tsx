@@ -114,12 +114,16 @@ export default function BlogPostPage() {
         </h1>
 
         {post.author && (
-        <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
-          <div className='flex items-center gap-3'>
-          <BiSolidBookReader className='text-[#184E59]'/>
-          <span className="text-green-500">{post.category || 'Category'}</span>
-          <GoClock className='text-[#184E59]'/>
-          <span className='text-green-500'>{readTime || '5 min'}</span>
+        <div className="flex flex-col text-xs text-gray-500 dark:text-gray-400 gap-4">
+          <div className='flex items-center gap-2'>
+            <div className='flex items-center gap-1'>
+              <BiSolidBookReader className='text-[#184E59]'/>
+              <span className="text-green-500">{post.category || 'Category'}</span>
+            </div>
+            <div className='flex items-center gap-1'>
+              <GoClock className='text-[#184E59]'/>
+              <span className='text-green-500'>{readTime || '5 min'}</span>
+            </div>
           </div>
           <SocialLinks />
         </div>
@@ -129,7 +133,7 @@ export default function BlogPostPage() {
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
-              className="w-8 h-8 rounded-full object-cover mr-2"
+              className="w-6 h-6 rounded-full object-cover mr-2"
             />
             <div>
               <h2 className="text-xs font-bold text-[#184E59] dark:text-white">{post.author.name}</h2>
