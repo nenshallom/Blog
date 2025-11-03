@@ -29,7 +29,7 @@ export default function EditorsPickCard({ post }: EditorsPickCardProps) {
           className="w-full h-64 object-cover rounded-lg shadow-lg"
         />
         <div className="p-4">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white transition-colors line-clamp-1">
+          <h3 className="text-md font-bold text-gray-900 dark:text-white transition-colors line-clamp-1">
             {title}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 mb-2 line-clamp-2">

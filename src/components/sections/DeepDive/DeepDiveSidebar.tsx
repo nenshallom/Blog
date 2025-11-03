@@ -18,10 +18,10 @@ export default function DeepDiveSidebar({ post }: DeepDiveSidebarProps) {
       <img
         src={imageUrl}
         alt={title}
-        className="w-16 h-16 object-cover rounded-md mr-4"
+        className="w-16 h-16 object-cover rounded-md mr-2"
       />
       <div>
-        <h4 className="text-base font-bold text-gray-900 dark:text-white transition-colors line-clamp-1">
+        <h4 className="text-sm font-bold text-gray-900 dark:text-white transition-colors line-clamp-1">
           {title}
         </h4>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-1 line-clamp-1">

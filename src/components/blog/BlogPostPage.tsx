@@ -129,10 +129,10 @@ export default function BlogPostPage() {
             <img
               src={post.author.imageUrl}
               alt={post.author.name}
-              className="w-8 h-8 rounded-full object-cover mr-4"
+              className="w-8 h-8 rounded-full object-cover mr-2"
             />
             <div>
-              <h2 className="text-sm font-bold text-[#184E59] dark:text-white">By {post.author.name}</h2>
+              <h2 className="text-xs font-bold text-[#184E59] dark:text-white">{post.author.name}</h2>
             </div>
           </div>
         )}
