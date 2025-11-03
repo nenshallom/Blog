@@ -148,10 +148,11 @@ export default function BlogPostPage() {
           </div>
         )}
       </article>
-      <div className='flex justify-center items-center'>
+      <NewsletterForm />
+      <div className='flex flex-col justify-center items-center mt-5'>
+        <p className='text-sm mb-1'>Follow us on</p>
       <SocialLinks />
       </div>
-      <NewsletterForm />
     </section>
   );
 }

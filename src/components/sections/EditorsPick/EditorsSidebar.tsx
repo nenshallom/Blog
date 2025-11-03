@@ -23,7 +23,7 @@ export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
               <img
                 src={post.imageUrl}
                 alt={post.title}
-                className="w-16 h-16 object-cover rounded-md mr-4"
+                className="w-full h-16 object-cover rounded-md mr-4"
               />
               <div>
                 <h4 className="text-sm font-bold text-gray-900 dark:text-white transition-colors line-clamp-1">
