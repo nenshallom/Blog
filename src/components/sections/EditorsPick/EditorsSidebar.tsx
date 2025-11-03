@@ -33,7 +33,7 @@ export default function EditorsSidebar({ posts }: EditorsSidebarProps) {
                 <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2 ">
                   
                   <GoClock />
-                  <span>{post.readTime || '5 min'} min</span>
+                  <span>{post.readTime || '5 min'} min read</span>
                 </div>
               </div>
             </Link>

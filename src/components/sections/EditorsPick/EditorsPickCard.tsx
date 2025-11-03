@@ -10,7 +10,7 @@ interface EditorsPickCardProps {
 }
 
 export default function EditorsPickCard({ post }: EditorsPickCardProps) {
-  const { title, excerpt, imageUrl, readTime, authorName, slug } = post;
+  const { title, excerpt, imageUrl, readTime, slug } = post;
   
   return (
     <motion.div // <-- Wrapped the Link in motion.div
@@ -36,8 +36,6 @@ export default function EditorsPickCard({ post }: EditorsPickCardProps) {
             {excerpt}
           </p>
           <div className="flex text-xs items-center text-gray-500 dark:text-gray-400 gap-2 mt-4">
-            <HiUserCircle />
-            <span>{authorName}</span>
             <GoClock />
             <span>{readTime ? `${readTime} min read` : '5 min read'}</span>
           </div>

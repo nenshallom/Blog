@@ -45,20 +45,23 @@ export default function BlogPage() {
         ? posts
         : posts.filter((post) => post.category === selectedCategory)
 
+    // Create a new array copy before sorting to avoid mutating state
+    const sortablePosts = [...filtered]
+
     if (selectedSort === 'Oldest') {
-      filtered = filtered.sort(
+      sortablePosts.sort(
         (a, b) =>
           new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
       )
     } else {
       // Default to Newest
-      filtered = filtered.sort(
+      sortablePosts.sort(
         (a, b) =>
           new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
       )
     }
 
-    return filtered
+    return sortablePosts // Return the newly sorted array
   }, [posts, selectedCategory, selectedSort])
 
   // Pagination logic

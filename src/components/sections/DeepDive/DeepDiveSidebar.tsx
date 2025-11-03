@@ -29,7 +29,7 @@ export default function DeepDiveSidebar({ post }: DeepDiveSidebarProps) {
         </p>
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
           <GoClock />
-          <span>{readTime || '5 min read'} min</span>
+          <span>{readTime || '5 min read'} min read</span>
         </div>
       </div>
     </Link>

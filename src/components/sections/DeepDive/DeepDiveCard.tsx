@@ -28,7 +28,7 @@ export default function DeepDiveCard({ post }: DeepDiveCardProps) {
           <HiUserCircle />
           <span>{authorName || 'Author'}</span>
           <GoClock />
-          <span>{readTime || '5 min read'} min</span>
+          <span>{readTime || '5 min read'} min read </span>
         </div>
       </div>
     </Link>

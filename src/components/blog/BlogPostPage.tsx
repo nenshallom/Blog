@@ -96,7 +96,7 @@ export default function BlogPostPage() {
   };
 
   return (
-    <section className="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-900 min-h-screen mt-10 overflow-y-scroll no-scrollbar">
+    <section className="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-900 min-h-screen mt-10">
       <SEO
         title={post.title}
         description={post.excerpt}

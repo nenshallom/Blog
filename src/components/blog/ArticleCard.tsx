@@ -4,14 +4,12 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import type { BlogPost } from "src/data/types";
 import { GoClock } from "react-icons/go";
-import { HiUserCircle } from "react-icons/hi";
-
 interface ArticleCardProps {
   post: BlogPost;
 }
 
 export default function ArticleCard({ post }: ArticleCardProps) {
-  const { title, excerpt, imageUrl, slug, readTime, authorName } = post;
+  const { title, excerpt, imageUrl, slug, readTime } = post;
 
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
@@ -59,10 +57,8 @@ export default function ArticleCard({ post }: ArticleCardProps) {
             {excerpt}
           </p>
           <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2 mt-4">
-            <HiUserCircle className="text-[#184E59]" />
-            <span>{authorName || 'Author'}</span>
             <GoClock className="text-[#184E59]"/>
-            <span>{readTime || '5 min read'} min</span>
+            <span>{readTime || '5 min read'} min read</span>
           </div>
         </div>
       </Link>
