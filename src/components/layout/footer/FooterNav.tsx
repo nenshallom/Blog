@@ -3,7 +3,7 @@ import { MainLinks } from "../site.config";
 
 export default function FooterNav() {
   return (
-    <ul className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm text-gray-600 dark:text-gray-300">
+    <ul className="flex flex-col sm:flex-row gap-2  text-sm text-gray-600 dark:text-gray-300">
       {MainLinks.map((link) => (
           <Link
           key={link.name}

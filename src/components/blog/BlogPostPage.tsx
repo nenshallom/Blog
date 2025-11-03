@@ -115,17 +115,17 @@ export default function BlogPostPage() {
 
         {post.author && (
         <div className="flex flex-col text-xs text-gray-500 dark:text-gray-400 pl-4">
-          <div className='flex items-center'>
+          <div className='flex items-center gap-2'>
             <div className='flex items-center gap-1'>
-              <BiSolidBookReader className='text-[#184E59]'/>
-              <span className="text-green-500">{post.category || 'Category'}</span>
+              <BiSolidBookReader/>
+              <span>{post.category || 'Category'}</span>
             </div>
             <div className='flex items-center gap-1'>
-              <GoClock className='text-[#184E59]'/>
-              <span className='text-green-500'>{readTime || '5 min'}</span>
+              <GoClock/>
+              <span>{readTime || '5 min'}</span>
             </div>
           </div>
-          <SocialLinks />
+
         </div>
         )}
         {post.author && (
@@ -136,7 +136,7 @@ export default function BlogPostPage() {
               className="w-6 h-6 rounded-full object-cover mr-2"
             />
             <div>
-              <h2 className="text-xs font-bold text-[#184E59] dark:text-white">{post.author.name}</h2>
+              <h2 className="text-xs font-bold  dark:text-white">{post.author.name}</h2>
             </div>
           </div>
         )}
@@ -148,6 +148,9 @@ export default function BlogPostPage() {
           </div>
         )}
       </article>
+      <div className='flex justify-center items-center'>
+      <SocialLinks />
+      </div>
       <NewsletterForm />
     </section>
   );
