@@ -2,7 +2,6 @@
 import { Link } from 'react-router-dom';
 import type { BlogPost } from 'src/data/types';
 import { GoClock } from "react-icons/go";
-import { HiUserCircle } from "react-icons/hi";
 import { motion } from 'framer-motion'; // <-- New import
 
 interface EditorsPickCardProps {
