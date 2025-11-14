@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { getPostBySlug } from '@my-sanity/queries';
 import SocialLinks from '@components/layout/footer/SocialLinks';
+import NewsletterSubscribe from '@components/layout/footer/NewsletterSubscribe';
 import NewsletterForm from '@components/layout/footer/NewsletterForm';
 import type { BlogPost } from 'src/data/types';
 import { PortableText } from '@portabletext/react';
@@ -103,7 +104,7 @@ export default function BlogPostPage() {
         isArticle={true}
         authorName={post.author?.name}
       />
-      <article className="max-w-3xl mx-auto">
+      <article className="max-w-3xl mx-auto mb-7">
         <img
           src={post.imageUrl}
           alt={post.title}
@@ -148,6 +149,7 @@ export default function BlogPostPage() {
           </div>
         )}
       </article>
+      <NewsletterSubscribe />
       <NewsletterForm />
       <div className='flex flex-col justify-center items-center mt-5'>
         <p className='text-sm mb-1'>Follow us on</p>
