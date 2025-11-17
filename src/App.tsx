@@ -10,33 +10,33 @@ import NotFoundPage from "./components/pages/NotFoundPage";
 import NewsletterPage from "./components/pages/NewsLetterPage";
 import ErrorFallback from "@components/ui/ErrorFallback";
 import { useEffect } from "react";
-import ReactGA from 'react-ga4';
 
 // Moved directly from the old analytics.ts file
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
-// A new component to handle all analytics logic
 function AnalyticsTracker() {
   const location = useLocation();
 
   useEffect(() => {
-    // Initialize GA on first load
-    if (MEASUREMENT_ID && process.env.NODE_ENV === 'production') {
-      ReactGA.initialize(MEASUREMENT_ID);
-      console.log("GA Initialized with ID:", MEASUREMENT_ID);
-    } else if (process.env.NODE_ENV === 'production') {
-      console.error("GA Measurement ID is missing. Analytics will not be initialized.");
-    }
-  }, []); // Empty dependency array ensures this runs only once
+    // This effect runs on every route change (when `location` changes)
+    
+    // Check if gtag is available (loaded from index.html) and we are in production
+    if (typeof window.gtag === 'function' && MEASUREMENT_ID && process.env.NODE_ENV === 'production') {
+      
+      // Send a 'config' event, which for GA4 properties also triggers a page_view
+      window.gtag('config', MEASUREMENT_ID, {
+        page_path: location.pathname + location.search,
+      });
 
-  useEffect(() => {
-    // Track page views on subsequent route changes
-    if (MEASUREMENT_ID && process.env.NODE_ENV === 'production') {
-      ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
-      console.log("Tracked page view:", location.pathname + location.search);
-    }
-  }, [location]); // Track every time the location changes
+      console.log("Tracked page view (gtag):", location.pathname + location.search);
 
+    } else if (process.env.NODE_ENV === 'production' && !MEASUREMENT_ID) {
+      console.error("GA Measurement ID is missing. Analytics will not be tracked.");
+    }
+
+  }, [location]); // Re-run this effect every time the location changes
+
+  // This component does not render anything
   return null;
 }
 
