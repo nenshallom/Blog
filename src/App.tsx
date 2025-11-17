@@ -14,6 +14,9 @@ import { useEffect, useState } from "react";
 // Moved directly from the old analytics.ts file
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
+// Add this line for debugging:
+console.log("Vite Environment Variables:", import.meta.env);
+
 // A new component to handle all analytics logic
 function AnalyticsTracker() {
   const location = useLocation();
