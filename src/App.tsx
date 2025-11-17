@@ -11,12 +11,15 @@ import NewsletterPage from "./components/pages/NewsLetterPage";
 import ErrorFallback from "@components/ui/ErrorFallback";
 import { useEffect, useState } from "react";
 
-const MEASUREMENT_ID = "G-GQ54FPG7ZW"; // <-- Add this line
+// Get the ID from Vite's env variables
+const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID; // <-- This should be active
+
+// --- TEMPORARY TEST ---
+// const MEASUREMENT_ID = "G-GQ54FPG7ZW"; // <-- This should be deleted or commented out
 // ----------------------
 
 // This will run on the live site. Let's see what these values are.
 console.log(`[Analytics Debug] IsProd: ${import.meta.env.PROD}, Has ID: ${!!MEASUREMENT_ID}`);
-
 
 /**
  * A component to handle all analytics logic.

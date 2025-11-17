@@ -12,4 +12,3 @@ interface Window {
    */
   gtag?: (command: string, ...args: any[]) => void;
 }
-VITE_GA_MEASUREMENT_ID="G-GQ54FPG7ZW"
