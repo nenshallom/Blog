@@ -9,35 +9,74 @@ import ScrollToTop from "./components/ui/scrollToTop";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import NewsletterPage from "./components/pages/NewsLetterPage";
 import ErrorFallback from "@components/ui/ErrorFallback";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // Moved directly from the old analytics.ts file
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
+// A new component to handle all analytics logic
 function AnalyticsTracker() {
   const location = useLocation();
+  const [initialized, setInitialized] = useState(false);
 
+  // Effect 1: Run ONCE to load the gtag.js script
   useEffect(() => {
-    // This effect runs on every route change (when `location` changes)
-    
-    // Check if gtag is available (loaded from index.html) and we are in production
-    if (typeof window.gtag === 'function' && MEASUREMENT_ID && process.env.NODE_ENV === 'production') {
+    // Only run in production and if we have a Measurement ID
+    if (process.env.NODE_ENV === 'production' && MEASUREMENT_ID) {
       
-      // Send a 'config' event, which for GA4 properties also triggers a page_view
+      // Check if the script is already on the page
+      if (document.querySelector(`script[src*="${MEASUREMENT_ID}"]`)) {
+        setInitialized(true);
+        return;
+      }
+
+      // Create the <script> tag
+      const script = document.createElement('script');
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+      script.async = true;
+
+      // Define the gtag function and dataLayer (as required by GA)
+      // We must do this *before* the script loads
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag(){ window.dataLayer?.push(arguments); };
+
+      // Set the initial config
+      window.gtag('js', new Date());
+      window.gtag('config', MEASUREMENT_ID, {
+        // We set 'send_page_view' to false here,
+        // because we will send it manually in the next effect
+        send_page_view: false, 
+      });
+
+      // When the script loads, mark as initialized
+      script.onload = () => {
+        setInitialized(true);
+        console.log("gtag.js script loaded and initialized.");
+      };
+      
+      // Add the script to the <head> of the document
+      document.head.appendChild(script);
+    }
+  }, []); // Empty array means this runs only once on mount
+
+  // Effect 2: Run on every route change (and after initialization)
+  useEffect(() => {
+    // Only track if...
+    // 1. We are in production
+    // 2. The script has been loaded (initialized = true)
+    // 3. The gtag function exists
+    if (process.env.NODE_ENV === 'production' && initialized && typeof window.gtag === 'function') {
+      
+      // Send the page_view event
       window.gtag('config', MEASUREMENT_ID, {
         page_path: location.pathname + location.search,
       });
 
       console.log("Tracked page view (gtag):", location.pathname + location.search);
-
-    } else if (process.env.NODE_ENV === 'production' && !MEASUREMENT_ID) {
-      console.error("GA Measurement ID is missing. Analytics will not be tracked.");
     }
+  }, [location, initialized]); // Re-run when location or initialization state changes
 
-  }, [location]); // Re-run this effect every time the location changes
-
-  // This component does not render anything
-  return null;
+  return null; // This component renders nothing
 }
 
 export default function App() {
