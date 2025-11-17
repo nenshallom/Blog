@@ -11,71 +11,68 @@ import NewsletterPage from "./components/pages/NewsLetterPage";
 import ErrorFallback from "@components/ui/ErrorFallback";
 import { useEffect, useState } from "react";
 
-// Moved directly from the old analytics.ts file
+// Get the ID from Vite's env variables
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
-// Add this line for debugging:
-console.log("Vite Environment Variables:", import.meta.env);
+// --- NEW DEBUG LINE ---
+// This will run on the live site. Let's see what these values are.
+console.log(`[Analytics Debug] IsProd: ${import.meta.env.PROD}, Has ID: ${!!MEASUREMENT_ID}`);
+// ----------------------
 
-// A new component to handle all analytics logic
+
+/**
+ * A component to handle all analytics logic.
+ * 1. It dynamically loads the gtag.js script on startup.
+ * 2. It sends page_view events on every route change.
+ */
 function AnalyticsTracker() {
   const location = useLocation();
   const [initialized, setInitialized] = useState(false);
 
   // Effect 1: Run ONCE to load the gtag.js script
   useEffect(() => {
-    // Only run in production and if we have a Measurement ID
-    if (process.env.NODE_ENV === 'production' && MEASUREMENT_ID) {
+    // *** THIS IS THE IMPORTANT CHANGE ***
+    // We check import.meta.env.PROD (Vite's way)
+    if (import.meta.env.PROD && MEASUREMENT_ID) {
       
-      // Check if the script is already on the page
+      console.log("[Analytics Debug] Initializing script load..."); // New log
+
       if (document.querySelector(`script[src*="${MEASUREMENT_ID}"]`)) {
         setInitialized(true);
         return;
       }
 
-      // Create the <script> tag
       const script = document.createElement('script');
       script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
       script.async = true;
 
-      // Define the gtag function and dataLayer (as required by GA)
-      // We must do this *before* the script loads
       window.dataLayer = window.dataLayer || [];
       window.gtag = function gtag(){ window.dataLayer?.push(arguments); };
 
-      // Set the initial config
       window.gtag('js', new Date());
       window.gtag('config', MEASUREMENT_ID, {
-        // We set 'send_page_view' to false here,
-        // because we will send it manually in the next effect
         send_page_view: false, 
       });
 
-      // When the script loads, mark as initialized
       script.onload = () => {
         setInitialized(true);
-        console.log("gtag.js script loaded and initialized.");
+        console.log("gtag.js script loaded and initialized."); // Your success message
       };
       
-      // Add the script to the <head> of the document
       document.head.appendChild(script);
     }
   }, []); // Empty array means this runs only once on mount
 
   // Effect 2: Run on every route change (and after initialization)
   useEffect(() => {
-    // Only track if...
-    // 1. We are in production
-    // 2. The script has been loaded (initialized = true)
-    // 3. The gtag function exists
-    if (process.env.NODE_ENV === 'production' && initialized && typeof window.gtag === 'function') {
+    // *** THIS IS THE IMPORTANT CHANGE ***
+    if (import.meta.env.PROD && initialized && typeof window.gtag === 'function') {
       
-      // Send the page_view event
       window.gtag('config', MEASUREMENT_ID, {
         page_path: location.pathname + location.search,
       });
 
-      console.log("Tracked page view (gtag):", location.pathname + location.search);
+      console.log("Tracked page view (gtag):", location.pathname + location.search); // Your success message
     }
   }, [location, initialized]); // Re-run when location or initialization state changes
 
