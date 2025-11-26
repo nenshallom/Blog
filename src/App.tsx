@@ -14,18 +14,7 @@ import { useEffect, useState } from "react";
 // Get the ID from Vite's env variables
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID; // <-- This should be active
 
-// --- TEMPORARY TEST ---
-// const MEASUREMENT_ID = "G-GQ54FPG7ZW"; // <-- This should be deleted or commented out
-// ----------------------
 
-// This will run on the live site. Let's see what these values are.
-console.log(`[Analytics Debug] IsProd: ${import.meta.env.PROD}, Has ID: ${!!MEASUREMENT_ID}`);
-
-/**
- * A component to handle all analytics logic.
- * 1. It dynamically loads the gtag.js script on startup.
- * 2. It sends page_view events on every route change.
- */
 function AnalyticsTracker() {
   const location = useLocation();
   const [initialized, setInitialized] = useState(false);
@@ -64,7 +53,6 @@ function AnalyticsTracker() {
     }
   }, []); // Empty array means this runs only once on mount
 
-  // Effect 2: Run on every route change (and after initialization)
   useEffect(() => {
     // *** THIS IS THE IMPORTANT CHANGE ***
     if (import.meta.env.PROD && initialized && typeof window.gtag === 'function') {
@@ -73,18 +61,18 @@ function AnalyticsTracker() {
         page_path: location.pathname + location.search,
       });
 
-      console.log("Tracked page view (gtag):", location.pathname + location.search); // Your success message
+      console.log("Tracked page view (gtag):", location.pathname + location.search); 
     }
-  }, [location, initialized]); // Re-run when location or initialization state changes
+  }, [location, initialized]); 
 
-  return null; // This component renders nothing
+  return null; 
 }
 
 export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <AnalyticsTracker /> {/* This single component now handles everything */}
+      <AnalyticsTracker /> 
       <Layout>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Routes>
