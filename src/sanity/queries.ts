@@ -32,6 +32,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     "readTime": round(length(pt::text(content)) / 5 / 200),
     publishedAt,
     content,
+    aiSummary,  
     "author": author->{
       name,
       "imageUrl": image.asset->url,

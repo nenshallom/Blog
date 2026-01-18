@@ -14,6 +14,8 @@ import { GoClock } from 'react-icons/go';
 import { BiSolidBookReader } from 'react-icons/bi';
 import Table from './Table'; // Import the new Table component
 import SEO from '@components/Seo';
+import SummaryButton from './SummaryButton';
+
 
 // Define a type for our specific link annotation
 type SanityLink = {
@@ -143,6 +145,13 @@ export default function BlogPostPage() {
         )}
 
         <hr className="my-4 border-gray-200 dark:border-gray-700" />
+
+        {post && (
+       <SummaryButton 
+          postId={post._id} 
+          initialSummary={post.aiSummary} 
+          />
+         )}
         {post.content && (
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <PortableText value={post.content} components={mainComponents} />

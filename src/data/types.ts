@@ -12,6 +12,7 @@ export interface BlogPost {
   authorName?: string;
   authorImageUrl?: string;
   content?: any;
+  aiSummary?: string;
   author?: {
     name: string;
     imageUrl: string;
