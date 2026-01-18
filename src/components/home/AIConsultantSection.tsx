@@ -50,7 +50,7 @@ export default function AIConsultantSection() {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section className="py-16 px-4 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-4xl mx-auto">
         
         {/* Header Section */}
@@ -61,7 +61,7 @@ export default function AIConsultantSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             AI Business Consultant
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Describe your business challenge or goal (e.g., "I want to automate my bakery's orders"), and we'll find the perfect guides for you.
           </p>
         </div>
@@ -77,12 +77,12 @@ export default function AIConsultantSection() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="How can AI help my real estate business?"
-                className="w-full px-4 py-3 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none text-lg"
+                className="w-full px-4 py-3 text-sm md:text-md bg-transparent text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none"
               />
               <button
                 type="submit"
                 disabled={loading || !query.trim()}
-                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-3 py-3 w-32 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-md transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {loading ? (
                   <>
@@ -91,7 +91,7 @@ export default function AIConsultantSection() {
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-5 h-5" />
+                    <Sparkles className="min-w-[] w-5 h-5" />
                     Ask AI
                   </>
                 )}
