@@ -6,7 +6,7 @@ const sanity = createClient({
   projectId: process.env.SANITY_PROJECT_ID || 'ztslohtd',
   dataset: process.env.SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
-  useCdn: true, // We can use CDN here for speed, we don't need instant consistency
+  useCdn: true, 
   token: process.env.SANITY_WRITE_TOKEN,
 });
 
@@ -37,7 +37,6 @@ export default async function handler(req: Request) {
     console.log(`[RECOMMEND] User asking: "${userQuery}"`);
 
     // 1. FETCH ALL POST METADATA
-    // We only need titles and excerpts, not the full body text (to save tokens)
     const allPosts = await sanity.fetch(
       `*[_type == "blog"]{ 
         title, 
@@ -83,7 +82,7 @@ export default async function handler(req: Request) {
       model: "gemini-flash-latest", 
       contents: prompt,
       config: {
-        responseMimeType: 'application/json', // Force JSON response for easy UI handling
+        responseMimeType: 'application/json',
       }
     });
 

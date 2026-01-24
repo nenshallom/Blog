@@ -26,7 +26,7 @@ interface TableProps {
   value: {
     rows: {
       _key: string;
-      cells: { content: any[] }[]; // Each cell is now an OBJECT with a 'content' property
+      cells: { content: any[] }[]; 
     }[];
   };
 }
@@ -50,7 +50,6 @@ const Table: React.FC<TableProps> = ({ value }) => {
                 scope="col"
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider align-top"
               >
-                {/* FIX: Access the 'content' property of the cell */}
                 <PortableText value={cell.content} components={cellComponents} />
               </th>
             ))}
@@ -64,7 +63,6 @@ const Table: React.FC<TableProps> = ({ value }) => {
                   key={index}
                   className="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 align-top min-w-[150px] break-words"
                 >
-                  {/* FIX: Access the 'content' property of the cell */}
                   <PortableText value={cell.content} components={cellComponents} />
                 </td>
               ))}

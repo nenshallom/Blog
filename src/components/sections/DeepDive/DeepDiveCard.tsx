@@ -9,7 +9,6 @@ interface DeepDiveCardProps {
 }
 
 export default function DeepDiveCard({ post }: DeepDiveCardProps) {
-  // FIX: Added 'authorName' and 'excerpt' to the destructuring
   const { title, excerpt, imageUrl, readTime, authorName } = post;
 
   return (
@@ -21,10 +20,8 @@ export default function DeepDiveCard({ post }: DeepDiveCardProps) {
       />
       <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black via-black/50 to-transparent rounded-lg">
         <h3 className="text-white text-md font-bold mb-2">{title}</h3>
-        {/* FIX: Added a paragraph to display the excerpt */}
         <p className="text-gray-400 text-sm mb-2 line-clamp-2">{excerpt}</p>
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
-          {/* <span>{new Date(publishedAt).toLocaleDateString()}</span> */}
           <HiUserCircle />
           <span>{authorName || 'Author'}</span>
           <GoClock />

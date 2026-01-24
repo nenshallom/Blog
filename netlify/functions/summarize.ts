@@ -50,14 +50,14 @@ export default async function handler(req: Request) {
     // 2. CHECK: Is someone else already working on this?
     if (post.isGenerating) {
       console.log('[LOCK] Generation in progress by another user.');
-      // Return 202 Accepted = "We are working on it, come back soon"
+      // Return 202 Accepted
       return new Response(JSON.stringify({ status: 'processing', message: 'Summary is being generated...' }), {
         status: 202,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    // 3. CACHE HIT: If we have a summary and aren't forcing, return it.
+    // 3. CACHE HIT: If ther is a summary and aren't forcing, return it.
     if (post.aiSummary && !forceRegenerate) {
       return new Response(JSON.stringify({ summary: post.aiSummary }), {
         status: 200,
@@ -105,7 +105,7 @@ export default async function handler(req: Request) {
       });
 
     } catch (innerError) {
-      // CRITICAL: If AI fails, we must release the lock or it stays stuck forever!
+      // CRITICAL: If AI fails, release the lock or it stays stuck forever!
       await sanity.patch(postId).set({ isGenerating: false }).commit();
       throw innerError;
     }

@@ -8,8 +8,8 @@ interface SEOProps {
   image?: string;
   url?: string;
   isArticle?: boolean;
-  publishedTime?: string; // For blog posts
-  modifiedTime?: string; // For blog posts
+  publishedTime?: string; 
+  modifiedTime?: string; 
   authorName?: string;
 }
 

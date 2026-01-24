@@ -62,7 +62,6 @@ export default function DeepDiveSection() {
             <DeepDiveCard post={featurePost} />
           </div>
           <div className="lg:w-1/3 space-y-4">
-            {/* FIX: Correctly map over sidePosts and pass a single 'post' prop */}
             {sidePosts.map((post) => (
               <DeepDiveSidebar key={post._id} post={post} />
             ))}

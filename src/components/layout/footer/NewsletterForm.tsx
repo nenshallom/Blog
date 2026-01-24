@@ -9,10 +9,6 @@ export default function NewsletterForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (_event: React.FormEvent<HTMLFormElement>) => {
-    // This is a standard Netlify form submission.
-    // We don't need to prevent the default behavior or handle state manually
-    // as Netlify's bots will process the form submission automatically.
-    // We can, however, manage the loading state for a better UX.
     setIsLoading(true);
   };
 
@@ -75,11 +71,6 @@ export default function NewsletterForm() {
           </button>
         </div>
       </form>
-
-      {/* For Netlify forms, you typically redirect to a "thank you" page on success.
-        Displaying a success/error message here requires more advanced JavaScript-based submission.
-        For now, removing the unused 'status' state is the correct fix.
-      */}
     </div>
   );
 }

@@ -2,7 +2,6 @@
 import AboutHeader from "./AboutHeader";
 import AboutTextSection from "./AboutTextSection";
 import FounderInfoSection from "./FounderInfo";
-// import ContactFormSection from "./ContactCTA";
 import { motion } from "framer-motion";
 
 const sectionFade = {

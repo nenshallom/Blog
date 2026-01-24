@@ -3,8 +3,8 @@ import { useEffect, useState, useMemo } from 'react'
 import BlogFilterBar from './BlogFilterBar'
 import BlogList from './BlogList'
 import Pagination from './Pagination'
-import { getAllBlogPosts } from '@my-sanity/queries' // Adjust the import path as necessary
-import type { BlogPost } from 'src/data/types' // Adjust the import path as necessary
+import { getAllBlogPosts } from '@my-sanity/queries' 
+import type { BlogPost } from 'src/data/types' 
 
 const POSTS_PER_PAGE = 6
 const SORT_OPTIONS = ['Newest', 'Oldest']
@@ -45,7 +45,7 @@ export default function BlogPage() {
         ? posts
         : posts.filter((post) => post.category === selectedCategory)
 
-    // Create a new array copy before sorting to avoid mutating state
+    // new array copy before sorting to avoid mutating state
     const sortablePosts = [...filtered]
 
     if (selectedSort === 'Oldest') {

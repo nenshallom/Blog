@@ -73,7 +73,6 @@ export default function SummaryButton({ postId, initialSummary }: SummaryButtonP
             TL;DR Summary
           </h3>
           <div className="flex items-center gap-2">
-            {/* We keep the regenerate button, but now it joins the queue if clicked */}
             <button 
               onClick={() => handleSummarize(true)}
               disabled={loading}

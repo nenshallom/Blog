@@ -1,5 +1,5 @@
 // src/components/blog/BlogFilterBar.tsx
-import Select from '@components/ui/Select' // Import our new Select component
+import Select from '@components/ui/Select'
 
 interface BlogFilterBarProps {
   categories: string[]

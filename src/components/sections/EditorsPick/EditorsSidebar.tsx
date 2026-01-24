@@ -1,4 +1,3 @@
-// src/components/sections/EditorsPick/EditorsSidebar.tsx
 import { Link } from 'react-router-dom';
 import type { BlogPost } from 'src/data/types';
 import { GoClock } from "react-icons/go";

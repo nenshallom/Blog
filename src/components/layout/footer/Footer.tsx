@@ -3,7 +3,6 @@ import FooterNav from "./FooterNav";
 import FooterTags from "./FooterTags";
 import SocialLinks from "./SocialLinks";
 import BrandLogo from "../navbar/BrandLogo";
-// import NewsletterForm from "./NewsletterForm";
 
 export default function Footer() {
   return (

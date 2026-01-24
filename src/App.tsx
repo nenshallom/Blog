@@ -46,7 +46,7 @@ function AnalyticsTracker() {
 
       script.onload = () => {
         setInitialized(true);
-        console.log("gtag.js script loaded and initialized."); // Your success message
+        console.log("gtag.js script loaded and initialized."); // success message
       };
       
       document.head.appendChild(script);

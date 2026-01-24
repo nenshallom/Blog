@@ -33,14 +33,12 @@ export default function MobileNavLinks({ setMenuOpen }: Props) {
 
       <nav className="pt-9 space-y-4">
         {MainLinks.map((link) => {
-          // Destructure the icon from the link object
           const Icon = link.icon;
           return (
             <Link
               key={link.name}
               to={link.href}
               onClick={() => setMenuOpen(false)}
-              // Use flexbox to align icon and text
               className="flex items-center font-medium pb-5 border-b border-gray-600 gap-7 text-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
               <Icon className="w-6 h-6" />

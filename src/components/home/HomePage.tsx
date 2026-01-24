@@ -11,12 +11,10 @@ export default function HomePage() {
     <>
     <SEO />
       <Hero />
-      {/* <BlogList /> */}
       <Latest />
       <AIConsultantSection />
       <EditorsPickSection />
       <DeepDiveSection />
-      {/* You can later add <About /> and <Newsletter /> here */}
     </>
   );
 }

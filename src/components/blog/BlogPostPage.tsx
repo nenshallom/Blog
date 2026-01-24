@@ -12,12 +12,12 @@ import { urlFor } from '@my-sanity/image';
 import { calculateReadTime } from '@utils/readTime';
 import { GoClock } from 'react-icons/go';
 import { BiSolidBookReader } from 'react-icons/bi';
-import Table from './Table'; // Import the new Table component
+import Table from './Table';
 import SEO from '@components/Seo';
 import SummaryButton from './SummaryButton';
 
 
-// Define a type for our specific link annotation
+// Define a type for specific link annotation
 type SanityLink = {
   _type: 'link';
   href: string;
@@ -85,7 +85,6 @@ export default function BlogPostPage() {
       table: Table,
     },
     marks: {
-      // Use the correctly imported type
       link: (props: PortableTextMarkComponentProps<SanityLink>) => {
         const { children, value } = props;
         const rel = !value?.href?.startsWith('/') ? 'noreferrer noopener' : undefined;

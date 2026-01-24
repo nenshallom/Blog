@@ -1,13 +1,13 @@
 // src/utils/readTime.ts
 import type { PortableTextBlock } from '@portabletext/react';
 
-// Define a reasonable words-per-minute rate for an average reader.
+// reasonable words-per-minute rate for an average reader.
 const WORDS_PER_MINUTE = 200;
 
 /**
  * Calculates the estimated reading time of a blog post from its Portable Text content.
- * @param content The Portable Text block array representing the post's content.
- * @returns A string with the estimated reading time (e.g., "5 min read").
+ * @param content 
+ * @returns 
  */
 export const calculateReadTime = (content: PortableTextBlock[]): string => {
   if (!content) {
@@ -18,7 +18,7 @@ export const calculateReadTime = (content: PortableTextBlock[]): string => {
 
   // Iterate over each block in the Portable Text content
   content.forEach(block => {
-    // Check if the block is of type 'block' and has children (spans)
+   
     if (block._type === 'block' && block.children) {
       block.children.forEach(span => {
         if (typeof span.text === 'string') {

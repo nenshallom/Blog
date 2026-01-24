@@ -1,4 +1,3 @@
-// src/sanity/queries.ts
 import { sanity } from './client';
 import type { BlogPost } from '../data/types';
 
