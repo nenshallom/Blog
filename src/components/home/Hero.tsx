@@ -1,17 +1,26 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Sparkles } from "lucide-react"; //
 
 export default function Hero() {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
-    setIsLargeScreen(window.innerWidth >= 1024); // Tailwind's lg breakpoint
+    setIsLargeScreen(window.innerWidth >= 1024);
   }, []);
+
+  const scrollToAI = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById("ai-consultant");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 dark:bg-gray-900 text-center mt-16 overflow-hidden">
-      {/* Background SVG Image – responsive and animated */}
+      {/* Background Image */}
       <motion.img
         initial={{ 
           x: isLargeScreen ? 100 : 0, 
@@ -68,13 +77,17 @@ export default function Hero() {
           Explore Blog
         </Link>
           
-        <Link
-          to="/newsletter"
-          aria-label="Subscribe to the newsletter"
-          className="px-6 py-3 rounded-full border-2 border-[#0f1c38] dark:border-gray-500 text-[#111827] dark:text-white font-semibold hover:bg-green-100 dark:hover:bg-gray-800 transition"
+        {/* Changed from Link to <a> for anchor scrolling */}
+        <motion.a
+          href="#ai-consultant"
+          onClick={scrollToAI}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-2 px-6 py-3 rounded-full border-2 border-[#0f1c38] dark:border-gray-500 text-[#111827] dark:text-white font-semibold bg-transparent hover:bg-green-50 dark:hover:bg-gray-800 transition-colors shadow-sm cursor-pointer"
         >
-          Join Newsletter
-        </Link>
+          <Sparkles className="w-4 h-4 text-green-600" />
+          Ask AI Consultant
+        </motion.a>
       </motion.div>
     </section>
   );

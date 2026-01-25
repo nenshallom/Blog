@@ -1,69 +1,52 @@
-# React + TypeScript + Vite
+# 🚀 Real Tools in Tech: AI-Powered Business Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, modern blog platform designed to bridge the gap between technical tools and business growth. This project features deep **Google Gemini AI** integrations for automated content summarization and intelligent business consulting.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## Expanding the ESLint configuration
+* **AI Business Consultant:** A custom-trained interface where users can describe business challenges and receive tailored article recommendations based on the blog's library.
+* **Smart TL;DR Summaries:** Automated generation of 3-5 key bullet points for every blog post using Gemini Flash, featuring a "lock" mechanism to prevent redundant API calls.
+* **Persistence & UX:** AI recommendations are cached in `sessionStorage` to ensure users don't lose their data when navigating between the home page and articles.
+* **Dynamic Content Management:** Fully integrated with **Sanity.io** for real-time content updates and portable text rendering.
+* **Responsive & Premium UI:** Built with **Tailwind CSS** and **Framer Motion** for smooth, high-end animations and transitions.
+* **Advanced Analytics:** Integrated Google Analytics 4 tracking configured for production environments.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📸 Screenshots
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+| Hero & AI Consultant | Article View & AI Summary |
+| :--- | :--- |
+| ![Hero Section](screenshots/Home.png) | ![AI consultant](screenshots/AIConsultant.png) |
+| ![Article AI Summarizer](screenshots/summarizeAI.png) | ![Article Summary](screenshots/summary.png) |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Frontend
+* **Framework:** React 19 + TypeScript.
+* **Build Tool:** Vite.
+* **Styling:** Tailwind CSS.
+* **Animations:** Framer Motion.
+* **Routing:** React Router DOM v7.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Backend & AI
+* **Serverless:** Netlify Functions (TypeScript).
+* **AI Model:** Google Gemini 1.5 Flash.
+* **CMS:** Sanity.io.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone and Install
+```bash
+git clone [https://github.com/nenshallom/blog.git](https://github.com/nenshallom/blog.git)
+cd blog
+npm install
+
+## View Live Lnk
+Visit Blog [https://codeandcultivate.site](https://codeandcultivate.site)

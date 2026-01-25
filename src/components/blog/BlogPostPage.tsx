@@ -152,7 +152,7 @@ export default function BlogPostPage() {
           />
          )}
         {post.content && (
-          <div className="prose prose-xs dark:prose-invert text-sm md:text-lg max-w-none">
+          <div className="prose prose-xs dark:prose-invert text-sm md:text-md max-w-none">
             <PortableText value={post.content} components={mainComponents} />
           </div>
         )}
