@@ -1,7 +1,7 @@
 # 🚀 Real Tools in Tech: AI-Powered Business Blog
 
 A high-performance, modern blog platform designed to bridge the gap between technical tools and business growth. This project features deep **Google Gemini AI** integrations for automated content summarization and intelligent business consulting.
-
+[Check out the Live Site](https://codeandcultivate.site)
 ---
 
 ## ✨ Key Features
@@ -15,14 +15,6 @@ A high-performance, modern blog platform designed to bridge the gap between tech
 
 ---
 
-## 📸 Screenshots
-
-| Hero & AI Consultant | Article View & AI Summary |
-| :--- | :--- |
-| ![Hero Section](screenshots/Home.png) | ![AI consultant](screenshots/AIConsultant.png) |
-| ![Article AI Summarizer](screenshots/summarizeAI.png) | ![Article Summary](screenshots/summary.png) |
-
----
 
 ## 🛠️ Tech Stack
 
@@ -48,5 +40,4 @@ git clone [https://github.com/nenshallom/blog.git](https://github.com/nenshallom
 cd blog
 npm install
 
-## View Live Lnk
-Visit Blog [https://codeandcultivate.site](https://codeandcultivate.site)
+
