@@ -102,6 +102,7 @@ export default function AIConsultantSection() {
               Start a new search
             </button>
           )}
+          {error && <p className="text-red-500 mt-3 text-center">{error}</p>}
         </form>
 
         {response?.recommendations && (
