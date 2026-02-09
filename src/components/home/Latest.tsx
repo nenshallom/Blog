@@ -1,8 +1,8 @@
-// src/components/sections/home/Latest.tsx
+// src/components/home/Latest.tsx
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ArticleCard from "@components/blog/ArticleCard";
-import { getAllBlogPosts } from "@my-sanity/queries";
+import { getLatestPosts } from "@my-sanity/queries"; // <-- Use the efficient query
 import type { BlogPost } from "src/data/types";
 
 export default function Latest() {
@@ -12,8 +12,9 @@ export default function Latest() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const allPosts = await getAllBlogPosts();
-        setLatestPosts(allPosts.slice(0, 3));
+        // Fetch only the latest 6 posts directly from Sanity
+        const data = await getLatestPosts(3);
+        setLatestPosts(data);
       } catch (error) {
         console.error("Failed to fetch latest posts:", error);
       } finally {
@@ -26,21 +27,27 @@ export default function Latest() {
   if (loading) {
     return (
       <section className="py-16 px-4 max-w-5xl mx-auto">
-        <div className="text-center text-gray-500">Loading latest posts...</div>
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="h-64 bg-gray-200 rounded"></div>
+            <div className="h-64 bg-gray-200 rounded"></div>
+            <div className="h-64 bg-gray-200 rounded"></div>
+          </div>
+        </div>
       </section>
     );
   }
 
-  if (latestPosts.length === 0) {
-    return null;
-  }
+  if (latestPosts.length === 0) return null;
 
   return (
     <section className="py-16 px-4 max-w-5xl mx-auto">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-4xl font-medium mt-2 text-left">Latest Articles</h2>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-4xl font-medium mt-2 text-left text-gray-900 dark:text-white">
+          Latest Articles
+        </h2>
       </div>
-
 
       <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {latestPosts.map((post) => (
@@ -50,7 +57,7 @@ export default function Latest() {
 
       <div className="mt-10 flex justify-center">
         <Link to="/blog">
-          <button className="px-6 py-3 bg-green-500 text-white rounded hover:bg-green-600 transition">
+          <button className="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 transition shadow-lg">
             View All Latest →
           </button>
         </Link>

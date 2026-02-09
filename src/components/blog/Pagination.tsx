@@ -1,42 +1,68 @@
-// src/components/sections/blog/Pagination.tsx
+// src/components/blog/Pagination.tsx
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
 interface PaginationProps {
   currentPage: number;
-  totalPages: number;
+  totalPosts: number;
+  postsPerPage: number;
   onPageChange: (page: number) => void;
 }
 
-export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const handlePrevious = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1);
-  };
+export default function Pagination({ 
+  currentPage, 
+  totalPosts, 
+  postsPerPage, 
+  onPageChange 
+}: PaginationProps) {
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
 
-  const handleNext = () => {
-    if (currentPage < totalPages) onPageChange(currentPage + 1);
-  };
+  if (totalPages <= 1) return null;
 
   return (
-    <div className="flex justify-center items-center gap-4 mt-8">
-      {/* Previous */}
+    <div className="flex justify-center items-center space-x-2 mt-12">
+      {/* Previous Button */}
       <button
-        onClick={handlePrevious}
+        onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-sm rounded disabled:opacity-50"
+        className={`p-2 rounded-full border transition-colors ${
+          currentPage === 1
+            ? "border-gray-200 text-gray-300 cursor-not-allowed dark:border-gray-800 dark:text-gray-700"
+            : "border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+        }`}
+        aria-label="Previous Page"
       >
-        Previous
+        <ArrowLeft className="w-5 h-5" />
       </button>
 
-      {/* Page Indicator */}
-      <span className="text-sm text-gray-700 dark:text-gray-300">
-        Page {currentPage} of {totalPages}
-      </span>
+      {/* Page Numbers */}
+      <div className="flex items-center space-x-1">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => onPageChange(page)}
+            className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
+              currentPage === page
+                ? "bg-green-600 text-white shadow-md"
+                : "text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
 
-      {/* Next */}
+      {/* Next Button */}
       <button
-        onClick={handleNext}
+        onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-sm rounded disabled:opacity-50"
+        className={`p-2 rounded-full border transition-colors ${
+          currentPage === totalPages
+            ? "border-gray-200 text-gray-300 cursor-not-allowed dark:border-gray-800 dark:text-gray-700"
+            : "border-gray-300 text-gray-600 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+        }`}
+        aria-label="Next Page"
       >
-        Next
+        <ArrowRight className="w-5 h-5" />
       </button>
     </div>
   );

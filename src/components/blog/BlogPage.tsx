@@ -1,116 +1,84 @@
 // src/components/blog/BlogPage.tsx
-import { useEffect, useState, useMemo } from 'react'
-import BlogFilterBar from './BlogFilterBar'
-import BlogList from './BlogList'
-import Pagination from './Pagination'
-import { getAllBlogPosts } from '@my-sanity/queries' 
-import type { BlogPost } from 'src/data/types' 
-
-const POSTS_PER_PAGE = 6
-const SORT_OPTIONS = ['Newest', 'Oldest']
+import SEO from "@components/Seo";
+import ScrollableCategorySection from "./ScrollableCategorySection";
+import {
+  getLatestPosts,
+  getEditorsPickPosts,
+  getBusinessesUsingAIPosts,
+  getAIWithoutStressPosts,
+  getAIForDailyBusinessPosts,
+  getAIForMoneyAndGrowthPosts,
+  getMindsetPosts
+} from "@my-sanity/queries";
 
 export default function BlogPage() {
-  const [posts, setPosts] = useState<BlogPost[]>([])
-  const [categories, setCategories] = useState<string[]>([])
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [currentPage, setCurrentPage] = useState(1)
-  const [loading, setLoading] = useState(true)
-  const [selectedSort, setSelectedSort] = useState('Newest')
-
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const allPosts = await getAllBlogPosts()
-        setPosts(allPosts)
-        setLoading(false)
-
-        // Extract and set categories dynamically
-        const uniqueCategories = [
-          'All',
-          ...new Set(allPosts.map((post) => post.category)),
-        ]
-        setCategories(uniqueCategories)
-      } catch (error) {
-        console.error('Failed to fetch posts:', error)
-        setLoading(false)
-      }
-    }
-    fetchPosts()
-  }, [])
-
-  // Memoize the filtered and sorted posts to avoid re-calculating on every render
-  const processedPosts = useMemo(() => {
-    let filtered =
-      selectedCategory === 'All'
-        ? posts
-        : posts.filter((post) => post.category === selectedCategory)
-
-    // new array copy before sorting to avoid mutating state
-    const sortablePosts = [...filtered]
-
-    if (selectedSort === 'Oldest') {
-      sortablePosts.sort(
-        (a, b) =>
-          new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
-      )
-    } else {
-      // Default to Newest
-      sortablePosts.sort(
-        (a, b) =>
-          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      )
-    }
-
-    return sortablePosts // Return the newly sorted array
-  }, [posts, selectedCategory, selectedSort])
-
-  // Pagination logic
-  const startIndex = (currentPage - 1) * POSTS_PER_PAGE
-  const currentPosts = processedPosts.slice(
-    startIndex,
-    startIndex + POSTS_PER_PAGE
-  )
-  const totalPages = Math.ceil(processedPosts.length / POSTS_PER_PAGE)
-
   return (
-    <section className="py-12 px-4 md:px-8 lg:px-16 bg-white dark:bg-gray-900 min-h-screen mt-10">
-      <div className="max-w-7xl mx-auto">
-        {/* Filter */}
-        <BlogFilterBar
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={(cat: string) => {
-            setSelectedCategory(cat)
-            setCurrentPage(1) // Reset to page 1 on category change
-          }}
-          sortOptions={SORT_OPTIONS}
-          selectedSort={selectedSort}
-          onSortChange={(sort: string) => {
-            setSelectedSort(sort)
-            setCurrentPage(1) // Reset to page 1 on sort change
+    <>
+      <SEO 
+        title="Blog - Code and Cultivate" 
+        description="Explore our latest articles on AI, Business, and Mindset." 
+      />
+      
+      <div className="bg-white dark:bg-gray-900 min-h-screen pt-24 pb-20">
+        <div className="max-w-7xl mx-auto px-4 mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white text-center">
+            Your <span className="text-green-500">Special</span> Blog
+          </h1>
+          <p className="text-center text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+            Swipe to see the latest articles in each category.
+          </p>
+        </div>
+
+        {/* 1. Latest Articles (Note: We use a dummy slug 'latest' or just link to /blog for now) */}
+        <ScrollableCategorySection
+          title="Latest Articles"
+          categorySlug="latest" // You might want to handle this specifically or map it to a 'all' query
+          fetchData={getLatestPosts}
+        />
+
+        {/* 2. Editors Pick */}
+        <ScrollableCategorySection
+          title="Editor's Pick"
+          categorySlug="editors-pick"
+          // Adapter: getEditorsPickPosts returns an object {main, complementary}, 
+          // but our component expects an array. We combine them here.
+          fetchData={async (limit) => {
+            const data = await getEditorsPickPosts();
+            return [...data.main, ...data.complementary].slice(0, limit);
           }}
         />
 
-        {/* Loading */}
-        {loading ? (
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            Loading posts...
-          </p>
-        ) : (
-          <>
-            <BlogList posts={currentPosts} />
+        {/* 3. Standard Categories */}
+        <ScrollableCategorySection
+          title="Businesses Using AI"
+          categorySlug="businesses-using-ai"
+          fetchData={getBusinessesUsingAIPosts}
+        />
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
-            )}
-          </>
-        )}
+        <ScrollableCategorySection
+          title="AI Without Stress"
+          categorySlug="ai-without-stress"
+          fetchData={getAIWithoutStressPosts}
+        />
+
+        <ScrollableCategorySection
+          title="AI for Daily Business"
+          categorySlug="ai-for-daily-business"
+          fetchData={getAIForDailyBusinessPosts}
+        />
+
+        <ScrollableCategorySection
+          title="AI for Money & Growth"
+          categorySlug="ai-for-money-and-growth"
+          fetchData={getAIForMoneyAndGrowthPosts}
+        />
+
+        <ScrollableCategorySection
+          title="Mindset & Entrepreneurship"
+          categorySlug="mindset-and-modern-entrepreneurship"
+          fetchData={getMindsetPosts}
+        />
       </div>
-    </section>
-  )
+    </>
+  );
 }

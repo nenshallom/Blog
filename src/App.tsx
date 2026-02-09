@@ -3,6 +3,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Layout from "./components/layout/Layout";
 import HomePage from "./components/home/HomePage";
 import BlogPage from "./components/blog/BlogPage";
+import CategoryPage from "./components/blog/CategoryPage";
 import AboutPage from "./components/sections/about/AboutPage";
 import BlogPostPage from "./components/blog/BlogPostPage";
 import ScrollToTop from "./components/ui/scrollToTop";
@@ -78,6 +79,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/category/:categorySlug" element={<CategoryPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
             <Route path="/ourStory" element={<AboutPage />} />
             <Route path="/NewsLetter" element={<NewsletterPage />} />
