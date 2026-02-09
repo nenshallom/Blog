@@ -1,9 +1,8 @@
-// src/components/blog/CategoryPage.tsx
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getCategoryPosts, getLatestPosts } from "@my-sanity/queries"; // Ensure getLatestPosts is imported
+import { getCategoryPosts, getLatestPosts } from "@my-sanity/queries"; 
 import ArticleCard from "./ArticleCard";
-import Pagination from "./Pagination"; // Import the new component
+import Pagination from "./Pagination"; 
 import type { BlogPost } from "src/data/types";
 import SEO from "@components/Seo";
 import { ArrowLeft } from "lucide-react";
@@ -30,14 +29,9 @@ export default function CategoryPage() {
       try {
         setLoading(true);
         window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top on page change
-
-        let data;
         
         // Handle "Latest" special case (simulated category)
         if (categorySlug === 'latest') {
-             // For latest, we just fetch a large number for now, 
-             // or you can create a specific paginated query for latest if needed.
-             // Currently assuming standard behavior:
              const allLatest = await getLatestPosts(50); 
              setPosts(allLatest.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage));
              setTotalPosts(allLatest.length);
@@ -55,7 +49,7 @@ export default function CategoryPage() {
       }
     }
     fetch();
-  }, [categorySlug, currentPage]); // Re-run when Slug OR Page changes
+  }, [categorySlug, currentPage]); 
 
   const displayTitle = categorySlug ? formatTitle(categorySlug) : "Category";
 
