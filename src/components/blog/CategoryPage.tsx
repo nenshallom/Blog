@@ -54,7 +54,7 @@ export default function CategoryPage() {
   const displayTitle = categorySlug ? formatTitle(categorySlug) : "Category";
 
   return (
-    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 mt-10">
+    <section className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 mt-0">
       <SEO title={`${displayTitle} - Blog`} description={`Read articles about ${displayTitle}`} />
       
       <div className="max-w-7xl mx-auto">
@@ -63,15 +63,12 @@ export default function CategoryPage() {
           <Link to="/blog" className="inline-flex items-center text-sm text-gray-500 hover:text-green-600 mb-4 transition">
             <ArrowLeft className="w-4 h-4 mr-1" /> Back to Blog
           </Link>
-          <div className="flex items-baseline gap-4">
-             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                {displayTitle}
+          <div className="items-baseline">
+             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                {displayTitle} Articles
              </h1>
-             <span className="text-gray-500 text-sm font-medium">
-                Page {currentPage}
-             </span>
           </div>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
+          <p className="text-gray-300 text-md">
             Browsing {totalPosts} articles
           </p>
         </div>
